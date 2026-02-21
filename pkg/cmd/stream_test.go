@@ -5,7 +5,7 @@ package cmd
 import (
 	"testing"
 
-	"github.com/stainless-sdks/believe-cli/internal/mocktest"
+	"github.com/cjavdev/believe-cli/internal/mocktest"
 )
 
 func TestStreamTestConnection(t *testing.T) {

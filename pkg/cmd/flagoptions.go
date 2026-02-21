@@ -14,11 +14,11 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/stainless-sdks/believe-cli/internal/apiform"
-	"github.com/stainless-sdks/believe-cli/internal/apiquery"
-	"github.com/stainless-sdks/believe-cli/internal/debugmiddleware"
-	"github.com/stainless-sdks/believe-cli/internal/requestflag"
-	"github.com/stainless-sdks/believe-go/option"
+	"github.com/cjavdev/believe-cli/internal/apiform"
+	"github.com/cjavdev/believe-cli/internal/apiquery"
+	"github.com/cjavdev/believe-cli/internal/debugmiddleware"
+	"github.com/cjavdev/believe-cli/internal/requestflag"
+	"github.com/cjavdev/believe-go/option"
 
 	"github.com/goccy/go-yaml"
 	"github.com/urfave/cli/v3"
