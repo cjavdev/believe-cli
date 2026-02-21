@@ -141,7 +141,6 @@ func init() {
 					&episodesList,
 					&episodesDelete,
 					&episodesGetWisdom,
-					&episodesListBySeason,
 				},
 			},
 			{
