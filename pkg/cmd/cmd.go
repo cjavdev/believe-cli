@@ -270,6 +270,14 @@ func init() {
 				},
 			},
 			{
+				Name:     "client:ws",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&clientWsTest,
+				},
+			},
+			{
 				Name:            "@manpages",
 				Usage:           "Generate documentation for 'man'",
 				UsageText:       "believe @manpages [-o believe.1] [--gzip]",
