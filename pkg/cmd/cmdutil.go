@@ -14,8 +14,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/stainless-sdks/believe-cli/internal/jsonview"
-	"github.com/stainless-sdks/believe-go/option"
+	"github.com/cjavdev/believe-cli/internal/jsonview"
+	"github.com/cjavdev/believe-go/option"
 
 	"github.com/charmbracelet/x/term"
 	"github.com/itchyny/json2yaml"

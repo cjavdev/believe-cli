@@ -10,8 +10,8 @@ import (
 	"os"
 	"slices"
 
-	"github.com/stainless-sdks/believe-cli/pkg/cmd"
-	"github.com/stainless-sdks/believe-go"
+	"github.com/cjavdev/believe-cli/pkg/cmd"
+	"github.com/cjavdev/believe-go"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )

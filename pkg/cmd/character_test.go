@@ -5,8 +5,8 @@ package cmd
 import (
 	"testing"
 
-	"github.com/stainless-sdks/believe-cli/internal/mocktest"
-	"github.com/stainless-sdks/believe-cli/internal/requestflag"
+	"github.com/cjavdev/believe-cli/internal/mocktest"
+	"github.com/cjavdev/believe-cli/internal/requestflag"
 )
 
 func TestCharactersCreate(t *testing.T) {

@@ -11,7 +11,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/stainless-sdks/believe-cli/internal/autocomplete"
+	"github.com/cjavdev/believe-cli/internal/autocomplete"
 	docs "github.com/urfave/cli-docs/v3"
 	"github.com/urfave/cli/v3"
 )
@@ -268,14 +268,6 @@ func init() {
 				Suggest:  true,
 				Commands: []*cli.Command{
 					&versionRetrieve,
-				},
-			},
-			{
-				Name:     "client:ws",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&clientWsTest,
 				},
 			},
 			{

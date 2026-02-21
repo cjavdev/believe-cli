@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stainless-sdks/believe-cli/internal/apiquery"
-	"github.com/stainless-sdks/believe-go"
-	"github.com/stainless-sdks/believe-go/option"
+	"github.com/cjavdev/believe-cli/internal/apiquery"
+	"github.com/cjavdev/believe-go"
+	"github.com/cjavdev/believe-go/option"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
