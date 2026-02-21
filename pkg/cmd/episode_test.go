@@ -98,14 +98,3 @@ func TestEpisodesGetWisdom(t *testing.T) {
 		"--episode-id", "episode_id",
 	)
 }
-
-func TestEpisodesListBySeason(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"episodes", "list-by-season",
-		"--season-number", "0",
-		"--limit", "10",
-		"--skip", "0",
-	)
-}
