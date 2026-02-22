@@ -9,7 +9,7 @@ import (
 )
 
 func TestTeamsLogoDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams:logo", "delete",
@@ -19,7 +19,7 @@ func TestTeamsLogoDelete(t *testing.T) {
 }
 
 func TestTeamsLogoDownload(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams:logo", "download",
@@ -29,7 +29,7 @@ func TestTeamsLogoDownload(t *testing.T) {
 }
 
 func TestTeamsLogoUpload(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams:logo", "upload",

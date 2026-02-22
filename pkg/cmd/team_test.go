@@ -10,7 +10,7 @@ import (
 )
 
 func TestTeamsCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "create",
@@ -66,7 +66,7 @@ func TestTeamsCreate(t *testing.T) {
 }
 
 func TestTeamsRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "retrieve",
@@ -75,7 +75,7 @@ func TestTeamsRetrieve(t *testing.T) {
 }
 
 func TestTeamsUpdate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "update",
@@ -90,7 +90,7 @@ func TestTeamsUpdate(t *testing.T) {
 		"--name", "x",
 		"--nickname", "nickname",
 		"--primary-color", "primary_color",
-		"--rival-team", "string",
+		"--rival-team", "[string]",
 		"--secondary-color", "secondary_color",
 		"--stadium", "stadium",
 		"--stadium-location", "{latitude: 51.4816, longitude: -0.191}",
@@ -117,7 +117,7 @@ func TestTeamsUpdate(t *testing.T) {
 		"--name", "x",
 		"--nickname", "nickname",
 		"--primary-color", "primary_color",
-		"--rival-team", "string",
+		"--rival-team", "[string]",
 		"--secondary-color", "secondary_color",
 		"--stadium", "stadium",
 		"--stadium-location.latitude", "51.4816",
@@ -131,7 +131,7 @@ func TestTeamsUpdate(t *testing.T) {
 }
 
 func TestTeamsList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "list",
@@ -143,7 +143,7 @@ func TestTeamsList(t *testing.T) {
 }
 
 func TestTeamsDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "delete",
@@ -152,7 +152,7 @@ func TestTeamsDelete(t *testing.T) {
 }
 
 func TestTeamsGetCulture(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "get-culture",
@@ -161,7 +161,7 @@ func TestTeamsGetCulture(t *testing.T) {
 }
 
 func TestTeamsGetRivals(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "get-rivals",
@@ -170,7 +170,7 @@ func TestTeamsGetRivals(t *testing.T) {
 }
 
 func TestTeamsListLogos(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "list-logos",

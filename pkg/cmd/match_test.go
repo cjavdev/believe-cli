@@ -10,7 +10,7 @@ import (
 )
 
 func TestMatchesCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "create",
@@ -60,7 +60,7 @@ func TestMatchesCreate(t *testing.T) {
 }
 
 func TestMatchesRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "retrieve",
@@ -69,7 +69,7 @@ func TestMatchesRetrieve(t *testing.T) {
 }
 
 func TestMatchesUpdate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "update",
@@ -87,7 +87,7 @@ func TestMatchesUpdate(t *testing.T) {
 		"--result", "win",
 		"--ted-halftime-speech", "ted_halftime_speech",
 		"--ticket-revenue-gbp", "0",
-		"--turning-point", "{description: description, emotional_impact: Galvanized the team's fighting spirit, minute: 0, character_involved: jamie-tartt}",
+		"--turning-point", "[{description: description, emotional_impact: Galvanized the team's fighting spirit, minute: 0, character_involved: jamie-tartt}]",
 		"--weather-temp-celsius", "-30",
 	)
 
@@ -121,7 +121,7 @@ func TestMatchesUpdate(t *testing.T) {
 }
 
 func TestMatchesList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "list",
@@ -134,7 +134,7 @@ func TestMatchesList(t *testing.T) {
 }
 
 func TestMatchesDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "delete",
@@ -143,7 +143,7 @@ func TestMatchesDelete(t *testing.T) {
 }
 
 func TestMatchesGetLesson(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "get-lesson",
@@ -152,7 +152,7 @@ func TestMatchesGetLesson(t *testing.T) {
 }
 
 func TestMatchesGetTurningPoints(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "get-turning-points",
@@ -161,7 +161,7 @@ func TestMatchesGetTurningPoints(t *testing.T) {
 }
 
 func TestMatchesStreamLive(t *testing.T) {
-	t.Skip("Prism doesn't support callbacks yet")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "stream-live",

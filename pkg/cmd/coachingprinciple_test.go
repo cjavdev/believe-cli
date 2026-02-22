@@ -9,7 +9,7 @@ import (
 )
 
 func TestCoachingPrinciplesRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"coaching:principles", "retrieve",
@@ -18,7 +18,7 @@ func TestCoachingPrinciplesRetrieve(t *testing.T) {
 }
 
 func TestCoachingPrinciplesList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"coaching:principles", "list",
@@ -28,7 +28,7 @@ func TestCoachingPrinciplesList(t *testing.T) {
 }
 
 func TestCoachingPrinciplesGetRandom(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"coaching:principles", "get-random",

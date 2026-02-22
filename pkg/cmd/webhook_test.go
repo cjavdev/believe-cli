@@ -9,19 +9,18 @@ import (
 )
 
 func TestWebhooksCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"webhooks", "create",
 		"--url", "https://example.com/webhooks",
 		"--description", "Production webhook for match notifications",
-		"--event-type", "match.completed",
-		"--event-type", "team_member.transferred",
+		"--event-type", "[match.completed, team_member.transferred]",
 	)
 }
 
 func TestWebhooksRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"webhooks", "retrieve",
@@ -30,7 +29,7 @@ func TestWebhooksRetrieve(t *testing.T) {
 }
 
 func TestWebhooksList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"webhooks", "list",
@@ -38,7 +37,7 @@ func TestWebhooksList(t *testing.T) {
 }
 
 func TestWebhooksDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"webhooks", "delete",
@@ -47,7 +46,7 @@ func TestWebhooksDelete(t *testing.T) {
 }
 
 func TestWebhooksTriggerEvent(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"webhooks", "trigger-event",
