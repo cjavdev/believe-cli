@@ -9,7 +9,7 @@ import (
 )
 
 func TestBiscuitsRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"biscuits", "retrieve",
@@ -18,7 +18,7 @@ func TestBiscuitsRetrieve(t *testing.T) {
 }
 
 func TestBiscuitsList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"biscuits", "list",
@@ -28,7 +28,7 @@ func TestBiscuitsList(t *testing.T) {
 }
 
 func TestBiscuitsGetFresh(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"biscuits", "get-fresh",

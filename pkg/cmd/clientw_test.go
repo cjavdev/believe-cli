@@ -9,7 +9,7 @@ import (
 )
 
 func TestClientWsTest(t *testing.T) {
-	t.Skip("Prism doesn't support callbacks yet")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"client:ws", "test",

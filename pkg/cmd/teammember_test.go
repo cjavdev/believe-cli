@@ -9,7 +9,7 @@ import (
 )
 
 func TestTeamMembersCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "create",
@@ -18,7 +18,7 @@ func TestTeamMembersCreate(t *testing.T) {
 }
 
 func TestTeamMembersRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "retrieve",
@@ -27,7 +27,7 @@ func TestTeamMembersRetrieve(t *testing.T) {
 }
 
 func TestTeamMembersUpdate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "update",
@@ -37,7 +37,7 @@ func TestTeamMembersUpdate(t *testing.T) {
 }
 
 func TestTeamMembersList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list",
@@ -49,7 +49,7 @@ func TestTeamMembersList(t *testing.T) {
 }
 
 func TestTeamMembersDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "delete",
@@ -58,7 +58,7 @@ func TestTeamMembersDelete(t *testing.T) {
 }
 
 func TestTeamMembersListCoaches(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list-coaches",
@@ -70,7 +70,7 @@ func TestTeamMembersListCoaches(t *testing.T) {
 }
 
 func TestTeamMembersListPlayers(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list-players",
@@ -82,7 +82,7 @@ func TestTeamMembersListPlayers(t *testing.T) {
 }
 
 func TestTeamMembersListStaff(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list-staff",

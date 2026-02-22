@@ -9,7 +9,7 @@ import (
 )
 
 func TestQuotesCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "create",
@@ -29,7 +29,7 @@ func TestQuotesCreate(t *testing.T) {
 }
 
 func TestQuotesRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "retrieve",
@@ -38,7 +38,7 @@ func TestQuotesRetrieve(t *testing.T) {
 }
 
 func TestQuotesUpdate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "update",
@@ -50,7 +50,7 @@ func TestQuotesUpdate(t *testing.T) {
 		"--is-inspirational=true",
 		"--moment-type", "halftime_speech",
 		"--popularity-score", "0",
-		"--secondary-theme", "belief",
+		"--secondary-theme", "[belief]",
 		"--text", "x",
 		"--theme", "belief",
 		"--times-shared", "0",
@@ -58,7 +58,7 @@ func TestQuotesUpdate(t *testing.T) {
 }
 
 func TestQuotesList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "list",
@@ -73,7 +73,7 @@ func TestQuotesList(t *testing.T) {
 }
 
 func TestQuotesDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "delete",
@@ -82,7 +82,7 @@ func TestQuotesDelete(t *testing.T) {
 }
 
 func TestQuotesGetRandom(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "get-random",
@@ -93,7 +93,7 @@ func TestQuotesGetRandom(t *testing.T) {
 }
 
 func TestQuotesListByCharacter(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "list-by-character",
@@ -104,7 +104,7 @@ func TestQuotesListByCharacter(t *testing.T) {
 }
 
 func TestQuotesListByTheme(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "list-by-theme",

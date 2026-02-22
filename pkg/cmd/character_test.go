@@ -10,7 +10,7 @@ import (
 )
 
 func TestCharactersCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "create",
@@ -69,7 +69,7 @@ func TestCharactersCreate(t *testing.T) {
 }
 
 func TestCharactersRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "retrieve",
@@ -78,7 +78,7 @@ func TestCharactersRetrieve(t *testing.T) {
 }
 
 func TestCharactersUpdate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "update",
@@ -87,14 +87,14 @@ func TestCharactersUpdate(t *testing.T) {
 		"--date-of-birth", "2019-12-27",
 		"--email", "dev@stainless.com",
 		"--emotional-stats", "{curiosity: 99, empathy: 100, optimism: 95, resilience: 90, vulnerability: 80}",
-		"--growth-arc", "{breakthrough: breakthrough, challenge: challenge, ending_point: ending_point, season: 1, starting_point: starting_point}",
+		"--growth-arc", "[{breakthrough: breakthrough, challenge: challenge, ending_point: ending_point, season: 1, starting_point: starting_point}]",
 		"--height-meters", "1",
 		"--name", "x",
-		"--personality-trait", "string",
+		"--personality-trait", "[string]",
 		"--profile-image-url", "https://example.com",
 		"--role", "coach",
 		"--salary-gbp", "0",
-		"--signature-quote", "string",
+		"--signature-quote", "[string]",
 		"--team-id", "team_id",
 	)
 
@@ -121,17 +121,17 @@ func TestCharactersUpdate(t *testing.T) {
 		"--growth-arc.starting-point", "starting_point",
 		"--height-meters", "1",
 		"--name", "x",
-		"--personality-trait", "string",
+		"--personality-trait", "[string]",
 		"--profile-image-url", "https://example.com",
 		"--role", "coach",
 		"--salary-gbp", "0",
-		"--signature-quote", "string",
+		"--signature-quote", "[string]",
 		"--team-id", "team_id",
 	)
 }
 
 func TestCharactersList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "list",
@@ -144,7 +144,7 @@ func TestCharactersList(t *testing.T) {
 }
 
 func TestCharactersDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "delete",
@@ -153,7 +153,7 @@ func TestCharactersDelete(t *testing.T) {
 }
 
 func TestCharactersGetQuotes(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "get-quotes",

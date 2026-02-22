@@ -9,7 +9,7 @@ import (
 )
 
 func TestEpisodesCreate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "create",
@@ -37,7 +37,7 @@ func TestEpisodesCreate(t *testing.T) {
 }
 
 func TestEpisodesRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "retrieve",
@@ -46,18 +46,18 @@ func TestEpisodesRetrieve(t *testing.T) {
 }
 
 func TestEpisodesUpdate(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "update",
 		"--episode-id", "episode_id",
 		"--air-date", "2019-12-27",
 		"--biscuits-with-boss-moment", "biscuits_with_boss_moment",
-		"--character-focus", "string",
+		"--character-focus", "[string]",
 		"--director", "director",
 		"--episode-number", "1",
 		"--main-theme", "main_theme",
-		"--memorable-moment", "string",
+		"--memorable-moment", "[string]",
 		"--runtime-minutes", "20",
 		"--season", "1",
 		"--synopsis", "synopsis",
@@ -70,7 +70,7 @@ func TestEpisodesUpdate(t *testing.T) {
 }
 
 func TestEpisodesList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "list",
@@ -82,7 +82,7 @@ func TestEpisodesList(t *testing.T) {
 }
 
 func TestEpisodesDelete(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "delete",
@@ -91,7 +91,7 @@ func TestEpisodesDelete(t *testing.T) {
 }
 
 func TestEpisodesGetWisdom(t *testing.T) {
-	t.Skip("Prism tests are disabled")
+	t.Skip("Mock server tests are disabled")
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "get-wisdom",
