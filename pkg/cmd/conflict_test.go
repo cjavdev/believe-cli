@@ -13,6 +13,7 @@ func TestConflictsResolve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"conflicts", "resolve",
+		"--api-key", "string",
 		"--conflict-type", "interpersonal",
 		"--description", "Alex keeps taking credit for my ideas in meetings and I'm getting resentful.",
 		"--parties-involved", "Me",

@@ -13,5 +13,6 @@ func TestVersionRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"version", "retrieve",
+		"--api-key", "string",
 	)
 }

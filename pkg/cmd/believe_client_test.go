@@ -13,5 +13,6 @@ func TestGetWelcome(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"get-welcome",
+		"--api-key", "string",
 	)
 }

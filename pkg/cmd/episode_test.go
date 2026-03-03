@@ -13,7 +13,8 @@ func TestEpisodesCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "create",
-		"--air-date", "2020-10-02",
+		"--api-key", "string",
+		"--air-date", "'2020-10-02'",
 		"--character-focus", "ted-lasso",
 		"--character-focus", "coach-beard",
 		"--character-focus", "higgins",
@@ -41,6 +42,7 @@ func TestEpisodesRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "retrieve",
+		"--api-key", "string",
 		"--episode-id", "episode_id",
 	)
 }
@@ -50,8 +52,9 @@ func TestEpisodesUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "update",
+		"--api-key", "string",
 		"--episode-id", "episode_id",
-		"--air-date", "2019-12-27",
+		"--air-date", "'2019-12-27'",
 		"--biscuits-with-boss-moment", "biscuits_with_boss_moment",
 		"--character-focus", "[string]",
 		"--director", "director",
@@ -74,6 +77,7 @@ func TestEpisodesList(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "list",
+		"--api-key", "string",
 		"--character-focus", "character_focus",
 		"--limit", "10",
 		"--season", "1",
@@ -86,6 +90,7 @@ func TestEpisodesDelete(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "delete",
+		"--api-key", "string",
 		"--episode-id", "episode_id",
 	)
 }
@@ -95,6 +100,7 @@ func TestEpisodesGetWisdom(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"episodes", "get-wisdom",
+		"--api-key", "string",
 		"--episode-id", "episode_id",
 	)
 }

@@ -13,6 +13,7 @@ func TestBelieveSubmit(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"believe", "submit",
+		"--api-key", "string",
 		"--situation", "I just got passed over for a promotion I've been working toward for two years.",
 		"--situation-type", "work_challenge",
 		"--context", "I've always tried to be a team player and support my colleagues.",

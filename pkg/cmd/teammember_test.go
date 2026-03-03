@@ -13,6 +13,7 @@ func TestTeamMembersCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "create",
+		"--api-key", "string",
 		"--member", "{character_id: jamie-tartt, jersey_number: 9, position: forward, team_id: afc-richmond, years_with_team: 3, assists: 23, goals_scored: 47, is_captain: false, member_type: player}",
 	)
 }
@@ -22,6 +23,7 @@ func TestTeamMembersRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "retrieve",
+		"--api-key", "string",
 		"--member-id", "member_id",
 	)
 }
@@ -31,6 +33,7 @@ func TestTeamMembersUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "update",
+		"--api-key", "string",
 		"--member-id", "member_id",
 		"--updates", "{assists: 0, goals_scored: 0, is_captain: true, jersey_number: 1, position: goalkeeper, team_id: team_id, years_with_team: 0}",
 	)
@@ -41,6 +44,7 @@ func TestTeamMembersList(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list",
+		"--api-key", "string",
 		"--limit", "10",
 		"--member-type", "player",
 		"--skip", "0",
@@ -53,6 +57,7 @@ func TestTeamMembersDelete(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "delete",
+		"--api-key", "string",
 		"--member-id", "member_id",
 	)
 }
@@ -62,6 +67,7 @@ func TestTeamMembersListCoaches(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list-coaches",
+		"--api-key", "string",
 		"--limit", "10",
 		"--skip", "0",
 		"--specialty", "head_coach",
@@ -74,6 +80,7 @@ func TestTeamMembersListPlayers(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list-players",
+		"--api-key", "string",
 		"--limit", "10",
 		"--position", "goalkeeper",
 		"--skip", "0",
@@ -86,6 +93,7 @@ func TestTeamMembersListStaff(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"team-members", "list-staff",
+		"--api-key", "string",
 		"--limit", "10",
 		"--skip", "0",
 		"--team-id", "team_id",
