@@ -13,6 +13,7 @@ func TestBiscuitsRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"biscuits", "retrieve",
+		"--api-key", "string",
 		"--biscuit-id", "biscuit_id",
 	)
 }
@@ -22,6 +23,7 @@ func TestBiscuitsList(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"biscuits", "list",
+		"--api-key", "string",
 		"--limit", "10",
 		"--skip", "0",
 	)
@@ -32,5 +34,6 @@ func TestBiscuitsGetFresh(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"biscuits", "get-fresh",
+		"--api-key", "string",
 	)
 }

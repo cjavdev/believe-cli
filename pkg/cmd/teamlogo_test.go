@@ -13,6 +13,7 @@ func TestTeamsLogoDelete(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams:logo", "delete",
+		"--api-key", "string",
 		"--team-id", "team_id",
 		"--file-id", "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 	)
@@ -23,6 +24,7 @@ func TestTeamsLogoDownload(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams:logo", "download",
+		"--api-key", "string",
 		"--team-id", "team_id",
 		"--file-id", "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 	)
@@ -33,7 +35,8 @@ func TestTeamsLogoUpload(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams:logo", "upload",
+		"--api-key", "string",
 		"--team-id", "team_id",
-		"--file", "",
+		"--file", "...",
 	)
 }

@@ -13,6 +13,7 @@ func TestQuotesCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "create",
+		"--api-key", "string",
 		"--character-id", "ted-lasso",
 		"--context", "Ted's first team meeting, revealing his coaching philosophy",
 		"--moment-type", "locker_room",
@@ -33,6 +34,7 @@ func TestQuotesRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "retrieve",
+		"--api-key", "string",
 		"--quote-id", "quote_id",
 	)
 }
@@ -42,6 +44,7 @@ func TestQuotesUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "update",
+		"--api-key", "string",
 		"--quote-id", "quote_id",
 		"--character-id", "character_id",
 		"--context", "context",
@@ -62,6 +65,7 @@ func TestQuotesList(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "list",
+		"--api-key", "string",
 		"--character-id", "character_id",
 		"--funny=true",
 		"--inspirational=true",
@@ -77,6 +81,7 @@ func TestQuotesDelete(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "delete",
+		"--api-key", "string",
 		"--quote-id", "quote_id",
 	)
 }
@@ -86,6 +91,7 @@ func TestQuotesGetRandom(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "get-random",
+		"--api-key", "string",
 		"--character-id", "character_id",
 		"--inspirational=true",
 		"--theme", "belief",
@@ -97,6 +103,7 @@ func TestQuotesListByCharacter(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "list-by-character",
+		"--api-key", "string",
 		"--character-id", "character_id",
 		"--limit", "10",
 		"--skip", "0",
@@ -108,6 +115,7 @@ func TestQuotesListByTheme(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"quotes", "list-by-theme",
+		"--api-key", "string",
 		"--theme", "belief",
 		"--limit", "10",
 		"--skip", "0",

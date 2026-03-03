@@ -13,5 +13,6 @@ func TestClientWsTest(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"client:ws", "test",
+		"--api-key", "string",
 	)
 }

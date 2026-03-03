@@ -13,5 +13,6 @@ func TestHealthCheck(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"health", "check",
+		"--api-key", "string",
 	)
 }

@@ -13,6 +13,7 @@ func TestPepTalkRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"pep-talk", "retrieve",
+		"--api-key", "string",
 		"--stream=true",
 	)
 }

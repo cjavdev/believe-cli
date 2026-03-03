@@ -14,13 +14,14 @@ func TestTeamsCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "create",
+		"--api-key", "string",
 		"--culture-score", "70",
 		"--founded-year", "1895",
 		"--league", "Premier League",
 		"--name", "West Ham United",
 		"--stadium", "London Stadium",
 		"--values", "{primary_value: Pride, secondary_values: [History, Community, Passion], team_motto: Forever Blowing Bubbles}",
-		"--annual-budget-gbp", "150000000.00",
+		"--annual-budget-gbp", "'150000000.00'",
 		"--average-attendance", "59988",
 		"--contact-email", "info@westhamunited.co.uk",
 		"--is-active=true",
@@ -49,7 +50,7 @@ func TestTeamsCreate(t *testing.T) {
 		"--values.primary-value", "Pride",
 		"--values.secondary-values", "[History, Community, Passion]",
 		"--values.team-motto", "Forever Blowing Bubbles",
-		"--annual-budget-gbp", "150000000.00",
+		"--annual-budget-gbp", "'150000000.00'",
 		"--average-attendance", "59988",
 		"--contact-email", "info@westhamunited.co.uk",
 		"--is-active=true",
@@ -70,6 +71,7 @@ func TestTeamsRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "retrieve",
+		"--api-key", "string",
 		"--team-id", "team_id",
 	)
 }
@@ -79,6 +81,7 @@ func TestTeamsUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "update",
+		"--api-key", "string",
 		"--team-id", "team_id",
 		"--annual-budget-gbp", "0",
 		"--average-attendance", "0",
@@ -135,6 +138,7 @@ func TestTeamsList(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "list",
+		"--api-key", "string",
 		"--league", "Premier League",
 		"--limit", "10",
 		"--min-culture-score", "0",
@@ -147,6 +151,7 @@ func TestTeamsDelete(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "delete",
+		"--api-key", "string",
 		"--team-id", "team_id",
 	)
 }
@@ -156,6 +161,7 @@ func TestTeamsGetCulture(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "get-culture",
+		"--api-key", "string",
 		"--team-id", "team_id",
 	)
 }
@@ -165,6 +171,7 @@ func TestTeamsGetRivals(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "get-rivals",
+		"--api-key", "string",
 		"--team-id", "team_id",
 	)
 }
@@ -174,6 +181,7 @@ func TestTeamsListLogos(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "list-logos",
+		"--api-key", "string",
 		"--team-id", "team_id",
 	)
 }

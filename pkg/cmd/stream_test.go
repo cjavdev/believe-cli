@@ -13,5 +13,6 @@ func TestStreamTestConnection(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"stream", "test-connection",
+		"--api-key", "string",
 	)
 }

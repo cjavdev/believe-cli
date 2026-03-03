@@ -13,6 +13,7 @@ func TestMatchesCommentaryStream(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches:commentary", "stream",
+		"--api-key", "string",
 		"--match-id", "match_id",
 	)
 }

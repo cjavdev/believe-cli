@@ -13,6 +13,7 @@ func TestReframeTransformNegativeThoughts(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"reframe", "transform-negative-thoughts",
+		"--api-key", "string",
 		"--negative-thought", "I'm not good enough for this job.",
 		"--recurring=true",
 	)

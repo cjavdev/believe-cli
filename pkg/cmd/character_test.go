@@ -14,6 +14,7 @@ func TestCharactersCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "create",
+		"--api-key", "string",
 		"--background", "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",
 		"--emotional-stats", "{curiosity: 40, empathy: 85, optimism: 45, resilience: 95, vulnerability: 60}",
 		"--name", "Roy Kent",
@@ -22,12 +23,12 @@ func TestCharactersCreate(t *testing.T) {
 		"--personality-trait", "secretly caring",
 		"--personality-trait", "profane",
 		"--role", "coach",
-		"--date-of-birth", "1977-03-15",
+		"--date-of-birth", "'1977-03-15'",
 		"--email", "roy.kent@afcrichmond.com",
 		"--growth-arc", "{breakthrough: Finding purpose beyond playing, challenge: Accepting his body's limitations, ending_point: Retired but lost, season: 1, starting_point: Aging footballer facing retirement}",
 		"--height-meters", "1.78",
 		"--profile-image-url", "https://afcrichmond.com/images/roy-kent.jpg",
-		"--salary-gbp", "175000.00",
+		"--salary-gbp", "'175000.00'",
 		"--signature-quote", "He's here, he's there, he's every-f***ing-where, Roy Kent!",
 		"--signature-quote", "Whistle!",
 		"--team-id", "afc-richmond",
@@ -52,7 +53,7 @@ func TestCharactersCreate(t *testing.T) {
 		"--personality-trait", "secretly caring",
 		"--personality-trait", "profane",
 		"--role", "coach",
-		"--date-of-birth", "1977-03-15",
+		"--date-of-birth", "'1977-03-15'",
 		"--email", "roy.kent@afcrichmond.com",
 		"--growth-arc.breakthrough", "Finding purpose beyond playing",
 		"--growth-arc.challenge", "Accepting his body's limitations",
@@ -61,7 +62,7 @@ func TestCharactersCreate(t *testing.T) {
 		"--growth-arc.starting-point", "Aging footballer facing retirement",
 		"--height-meters", "1.78",
 		"--profile-image-url", "https://afcrichmond.com/images/roy-kent.jpg",
-		"--salary-gbp", "175000.00",
+		"--salary-gbp", "'175000.00'",
 		"--signature-quote", "He's here, he's there, he's every-f***ing-where, Roy Kent!",
 		"--signature-quote", "Whistle!",
 		"--team-id", "afc-richmond",
@@ -73,6 +74,7 @@ func TestCharactersRetrieve(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "retrieve",
+		"--api-key", "string",
 		"--character-id", "character_id",
 	)
 }
@@ -82,9 +84,10 @@ func TestCharactersUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "update",
+		"--api-key", "string",
 		"--character-id", "character_id",
 		"--background", "background",
-		"--date-of-birth", "2019-12-27",
+		"--date-of-birth", "'2019-12-27'",
 		"--email", "dev@stainless.com",
 		"--emotional-stats", "{curiosity: 99, empathy: 100, optimism: 95, resilience: 90, vulnerability: 80}",
 		"--growth-arc", "[{breakthrough: breakthrough, challenge: challenge, ending_point: ending_point, season: 1, starting_point: starting_point}]",
@@ -107,7 +110,7 @@ func TestCharactersUpdate(t *testing.T) {
 		"characters", "update",
 		"--character-id", "character_id",
 		"--background", "background",
-		"--date-of-birth", "2019-12-27",
+		"--date-of-birth", "'2019-12-27'",
 		"--email", "dev@stainless.com",
 		"--emotional-stats.curiosity", "99",
 		"--emotional-stats.empathy", "100",
@@ -135,6 +138,7 @@ func TestCharactersList(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "list",
+		"--api-key", "string",
 		"--limit", "10",
 		"--min-optimism", "0",
 		"--role", "coach",
@@ -148,6 +152,7 @@ func TestCharactersDelete(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "delete",
+		"--api-key", "string",
 		"--character-id", "character_id",
 	)
 }
@@ -157,6 +162,7 @@ func TestCharactersGetQuotes(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "get-quotes",
+		"--api-key", "string",
 		"--character-id", "character_id",
 	)
 }
