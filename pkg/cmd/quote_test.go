@@ -113,6 +113,7 @@ func TestQuotesList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "quotes", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--character-id", "character_id",
 			"--funny=true",
 			"--inspirational=true",
@@ -154,6 +155,7 @@ func TestQuotesListByCharacter(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "quotes", "list-by-character",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--character-id", "character_id",
 			"--limit", "10",
 			"--skip", "0",
@@ -167,6 +169,7 @@ func TestQuotesListByTheme(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "quotes", "list-by-theme",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--theme", "belief",
 			"--limit", "10",
 			"--skip", "0",

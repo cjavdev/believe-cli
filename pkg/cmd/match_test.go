@@ -197,6 +197,7 @@ func TestMatchesList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "matches", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--match-type", "league",
 			"--result", "win",

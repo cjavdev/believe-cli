@@ -25,6 +25,7 @@ func TestCoachingPrinciplesList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "coaching:principles", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--skip", "0",
 		)

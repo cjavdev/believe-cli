@@ -92,6 +92,10 @@ var teamMembersList = cli.Command{
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
 		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
 	},
 	Action:          handleTeamMembersList,
 	HideHelpCommand: true,
@@ -138,6 +142,10 @@ var teamMembersListCoaches = cli.Command{
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
 		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
 	},
 	Action:          handleTeamMembersListCoaches,
 	HideHelpCommand: true,
@@ -170,6 +178,10 @@ var teamMembersListPlayers = cli.Command{
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
 		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
 	},
 	Action:          handleTeamMembersListPlayers,
 	HideHelpCommand: true,
@@ -196,6 +208,10 @@ var teamMembersListStaff = cli.Command{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
+		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
 		},
 	},
 	Action:          handleTeamMembersListStaff,
@@ -347,7 +363,11 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "team-members list", obj, format, transform)
 	} else {
 		iter := client.TeamMembers.ListAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "team-members list", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "team-members list", iter, format, transform, maxItems)
 	}
 }
 
@@ -410,7 +430,11 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "team-members list-coaches", obj, format, transform)
 	} else {
 		iter := client.TeamMembers.ListCoachesAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "team-members list-coaches", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "team-members list-coaches", iter, format, transform, maxItems)
 	}
 }
 
@@ -448,7 +472,11 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "team-members list-players", obj, format, transform)
 	} else {
 		iter := client.TeamMembers.ListPlayersAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "team-members list-players", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "team-members list-players", iter, format, transform, maxItems)
 	}
 }
 
@@ -486,6 +514,10 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "team-members list-staff", obj, format, transform)
 	} else {
 		iter := client.TeamMembers.ListStaffAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "team-members list-staff", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "team-members list-staff", iter, format, transform, maxItems)
 	}
 }
