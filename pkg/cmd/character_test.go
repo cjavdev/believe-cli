@@ -41,6 +41,7 @@ func TestCharactersCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "create",
+		"--api-key", "string",
 		"--background", "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",
 		"--emotional-stats.curiosity", "40",
 		"--emotional-stats.empathy", "85",
@@ -108,6 +109,7 @@ func TestCharactersUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"characters", "update",
+		"--api-key", "string",
 		"--character-id", "character_id",
 		"--background", "background",
 		"--date-of-birth", "'2019-12-27'",
