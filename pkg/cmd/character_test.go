@@ -221,6 +221,7 @@ func TestCharactersList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "characters", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--min-optimism", "0",
 			"--role", "coach",

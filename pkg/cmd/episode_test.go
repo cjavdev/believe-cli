@@ -141,6 +141,7 @@ func TestEpisodesList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "episodes", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--character-focus", "character_focus",
 			"--limit", "10",
 			"--season", "1",

@@ -203,6 +203,10 @@ var quotesList = cli.Command{
 			Usage:     "Themes that quotes can be categorized under.",
 			QueryPath: "theme",
 		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
 	},
 	Action:          handleQuotesList,
 	HideHelpCommand: true,
@@ -268,6 +272,10 @@ var quotesListByCharacter = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
 	},
 	Action:          handleQuotesListByCharacter,
 	HideHelpCommand: true,
@@ -294,6 +302,10 @@ var quotesListByTheme = cli.Command{
 			Usage:     "Number of items to skip (offset)",
 			Default:   0,
 			QueryPath: "skip",
+		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
 		},
 	},
 	Action:          handleQuotesListByTheme,
@@ -445,7 +457,11 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "quotes list", obj, format, transform)
 	} else {
 		iter := client.Quotes.ListAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "quotes list", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "quotes list", iter, format, transform, maxItems)
 	}
 }
 
@@ -555,7 +571,11 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 			params,
 			options...,
 		)
-		return ShowJSONIterator(os.Stdout, "quotes list-by-character", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "quotes list-by-character", iter, format, transform, maxItems)
 	}
 }
 
@@ -606,6 +626,10 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 			params,
 			options...,
 		)
-		return ShowJSONIterator(os.Stdout, "quotes list-by-theme", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "quotes list-by-theme", iter, format, transform, maxItems)
 	}
 }

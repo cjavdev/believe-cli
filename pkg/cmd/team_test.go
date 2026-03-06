@@ -218,6 +218,7 @@ func TestTeamsList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "teams", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--league", "Premier League",
 			"--limit", "10",
 			"--min-culture-score", "0",

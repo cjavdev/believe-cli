@@ -83,6 +83,7 @@ func TestTeamMembersList(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "team-members", "list",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--member-type", "player",
 			"--skip", "0",
@@ -108,6 +109,7 @@ func TestTeamMembersListCoaches(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "team-members", "list-coaches",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--skip", "0",
 			"--specialty", "head_coach",
@@ -122,6 +124,7 @@ func TestTeamMembersListPlayers(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "team-members", "list-players",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--position", "goalkeeper",
 			"--skip", "0",
@@ -136,6 +139,7 @@ func TestTeamMembersListStaff(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
 			t, "team-members", "list-staff",
 			"--api-key", "string",
+			"--max-items", "10",
 			"--limit", "10",
 			"--skip", "0",
 			"--team-id", "team_id",
