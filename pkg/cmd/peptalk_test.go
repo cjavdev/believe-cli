@@ -10,10 +10,11 @@ import (
 
 func TestPepTalkRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"pep-talk", "retrieve",
-		"--api-key", "string",
-		"--stream=true",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "pep-talk", "retrieve",
+			"--api-key", "string",
+			"--stream=true",
+		)
+	})
 }

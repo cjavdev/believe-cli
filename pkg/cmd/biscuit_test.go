@@ -10,30 +10,33 @@ import (
 
 func TestBiscuitsRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"biscuits", "retrieve",
-		"--api-key", "string",
-		"--biscuit-id", "biscuit_id",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "biscuits", "retrieve",
+			"--api-key", "string",
+			"--biscuit-id", "biscuit_id",
+		)
+	})
 }
 
 func TestBiscuitsList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"biscuits", "list",
-		"--api-key", "string",
-		"--limit", "10",
-		"--skip", "0",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "biscuits", "list",
+			"--api-key", "string",
+			"--limit", "10",
+			"--skip", "0",
+		)
+	})
 }
 
 func TestBiscuitsGetFresh(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"biscuits", "get-fresh",
-		"--api-key", "string",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "biscuits", "get-fresh",
+			"--api-key", "string",
+		)
+	})
 }

@@ -10,9 +10,10 @@ import (
 
 func TestStreamTestConnection(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"stream", "test-connection",
-		"--api-key", "string",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "stream", "test-connection",
+			"--api-key", "string",
+		)
+	})
 }

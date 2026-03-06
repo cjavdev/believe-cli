@@ -10,9 +10,10 @@ import (
 
 func TestHealthCheck(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"health", "check",
-		"--api-key", "string",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "health", "check",
+			"--api-key", "string",
+		)
+	})
 }

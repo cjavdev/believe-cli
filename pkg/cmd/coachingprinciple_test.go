@@ -10,30 +10,33 @@ import (
 
 func TestCoachingPrinciplesRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"coaching:principles", "retrieve",
-		"--api-key", "string",
-		"--principle-id", "principle_id",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "coaching:principles", "retrieve",
+			"--api-key", "string",
+			"--principle-id", "principle_id",
+		)
+	})
 }
 
 func TestCoachingPrinciplesList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"coaching:principles", "list",
-		"--api-key", "string",
-		"--limit", "10",
-		"--skip", "0",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "coaching:principles", "list",
+			"--api-key", "string",
+			"--limit", "10",
+			"--skip", "0",
+		)
+	})
 }
 
 func TestCoachingPrinciplesGetRandom(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"coaching:principles", "get-random",
-		"--api-key", "string",
-	)
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "coaching:principles", "get-random",
+			"--api-key", "string",
+		)
+	})
 }
