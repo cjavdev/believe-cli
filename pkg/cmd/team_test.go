@@ -42,6 +42,7 @@ func TestTeamsCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "create",
+		"--api-key", "string",
 		"--culture-score", "70",
 		"--founded-year", "1895",
 		"--league", "Premier League",
@@ -109,6 +110,7 @@ func TestTeamsUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"teams", "update",
+		"--api-key", "string",
 		"--team-id", "team_id",
 		"--annual-budget-gbp", "0",
 		"--average-attendance", "0",

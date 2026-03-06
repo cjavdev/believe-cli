@@ -39,6 +39,7 @@ func TestMatchesCreate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "create",
+		"--api-key", "string",
 		"--away-team-id", "tottenham",
 		"--date", "'2024-02-20T19:45:00Z'",
 		"--home-team-id", "afc-richmond",
@@ -101,6 +102,7 @@ func TestMatchesUpdate(t *testing.T) {
 	mocktest.TestRunMockTestWithFlags(
 		t,
 		"matches", "update",
+		"--api-key", "string",
 		"--match-id", "match_id",
 		"--attendance", "0",
 		"--away-score", "0",
