@@ -39,13 +39,13 @@ func TestTeamsLogoUpload(t *testing.T) {
 			t, "teams:logo", "upload",
 			"--api-key", "string",
 			"--team-id", "team_id",
-			"--file", "...",
+			"--file", "Example data",
 		)
 	})
 
 	t.Run("piping data", func(t *testing.T) {
 		// Test piping YAML data over stdin
-		pipeData := []byte("{}")
+		pipeData := []byte("file: Example data")
 		mocktest.TestRunMockTestWithPipeAndFlags(
 			t, pipeData, "teams:logo", "upload",
 			"--api-key", "string",
