@@ -15,7 +15,7 @@ import (
 	"github.com/urfave/cli/v3"
 )
 
-var clientTicketSalesCreate = cli.Command{
+var ticketSalesCreate = cli.Command{
 	Name:    "create",
 	Usage:   "Record a new ticket sale.",
 	Suggest: true,
@@ -46,7 +46,7 @@ var clientTicketSalesCreate = cli.Command{
 		},
 		&requestflag.Flag[string]{
 			Name:     "purchase-method",
-			Usage:    "How the ticket was purchased",
+			Usage:    "How the ticket was purchased.",
 			Required: true,
 			BodyPath: "purchase_method",
 		},
@@ -91,11 +91,11 @@ var clientTicketSalesCreate = cli.Command{
 			BodyPath: "coupon_code",
 		},
 	},
-	Action:          handleClientTicketSalesCreate,
+	Action:          handleTicketSalesCreate,
 	HideHelpCommand: true,
 }
 
-var clientTicketSalesRetrieve = cli.Command{
+var ticketSalesRetrieve = cli.Command{
 	Name:    "retrieve",
 	Usage:   "Retrieve detailed information about a specific ticket sale.",
 	Suggest: true,
@@ -105,11 +105,11 @@ var clientTicketSalesRetrieve = cli.Command{
 			Required: true,
 		},
 	},
-	Action:          handleClientTicketSalesRetrieve,
+	Action:          handleTicketSalesRetrieve,
 	HideHelpCommand: true,
 }
 
-var clientTicketSalesUpdate = cli.Command{
+var ticketSalesUpdate = cli.Command{
 	Name:    "update",
 	Usage:   "Update specific fields of an existing ticket sale.",
 	Suggest: true,
@@ -142,7 +142,7 @@ var clientTicketSalesUpdate = cli.Command{
 			Name:     "match-id",
 			BodyPath: "match_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[string]{
 			Name:     "purchase-method",
 			Usage:    "How the ticket was purchased.",
 			BodyPath: "purchase_method",
@@ -168,11 +168,11 @@ var clientTicketSalesUpdate = cli.Command{
 			BodyPath: "unit_price",
 		},
 	},
-	Action:          handleClientTicketSalesUpdate,
+	Action:          handleTicketSalesUpdate,
 	HideHelpCommand: true,
 }
 
-var clientTicketSalesList = cli.Command{
+var ticketSalesList = cli.Command{
 	Name:    "list",
 	Usage:   "Get a paginated list of all ticket sales with optional filtering. With 300\nrecords, this endpoint is ideal for practicing pagination.",
 	Suggest: true,
@@ -198,9 +198,9 @@ var clientTicketSalesList = cli.Command{
 			Usage:     "Filter by match ID",
 			QueryPath: "match_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[string]{
 			Name:      "purchase-method",
-			Usage:     "Filter by purchase method",
+			Usage:     "How the ticket was purchased.",
 			QueryPath: "purchase_method",
 		},
 		&requestflag.Flag[int64]{
@@ -214,11 +214,11 @@ var clientTicketSalesList = cli.Command{
 			Usage: "The maximum number of items to return (use -1 for unlimited).",
 		},
 	},
-	Action:          handleClientTicketSalesList,
+	Action:          handleTicketSalesList,
 	HideHelpCommand: true,
 }
 
-var clientTicketSalesDelete = cli.Command{
+var ticketSalesDelete = cli.Command{
 	Name:    "delete",
 	Usage:   "Remove a ticket sale from the database.",
 	Suggest: true,
@@ -228,11 +228,11 @@ var clientTicketSalesDelete = cli.Command{
 			Required: true,
 		},
 	},
-	Action:          handleClientTicketSalesDelete,
+	Action:          handleTicketSalesDelete,
 	HideHelpCommand: true,
 }
 
-func handleClientTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
+func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 	client := believe.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 
@@ -240,7 +240,7 @@ func handleClientTicketSalesCreate(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.ClientTicketSaleNewParams{}
+	params := believe.TicketSaleNewParams{}
 
 	options, err := flagOptions(
 		cmd,
@@ -255,7 +255,7 @@ func handleClientTicketSalesCreate(ctx context.Context, cmd *cli.Command) error 
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Client.TicketSales.New(ctx, params, options...)
+	_, err = client.TicketSales.New(ctx, params, options...)
 	if err != nil {
 		return err
 	}
@@ -263,10 +263,10 @@ func handleClientTicketSalesCreate(ctx context.Context, cmd *cli.Command) error 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "client:ticket-sales create", obj, format, transform)
+	return ShowJSON(os.Stdout, "ticket-sales create", obj, format, transform)
 }
 
-func handleClientTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) error {
+func handleTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	client := believe.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 	if !cmd.IsSet("ticket-sale-id") && len(unusedArgs) > 0 {
@@ -290,7 +290,7 @@ func handleClientTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) erro
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Client.TicketSales.Get(ctx, cmd.Value("ticket-sale-id").(string), options...)
+	_, err = client.TicketSales.Get(ctx, cmd.Value("ticket-sale-id").(string), options...)
 	if err != nil {
 		return err
 	}
@@ -298,10 +298,10 @@ func handleClientTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) erro
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "client:ticket-sales retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, "ticket-sales retrieve", obj, format, transform)
 }
 
-func handleClientTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
+func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 	client := believe.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 	if !cmd.IsSet("ticket-sale-id") && len(unusedArgs) > 0 {
@@ -312,7 +312,7 @@ func handleClientTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error 
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.ClientTicketSaleUpdateParams{}
+	params := believe.TicketSaleUpdateParams{}
 
 	options, err := flagOptions(
 		cmd,
@@ -327,7 +327,7 @@ func handleClientTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error 
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
-	_, err = client.Client.TicketSales.Update(
+	_, err = client.TicketSales.Update(
 		ctx,
 		cmd.Value("ticket-sale-id").(string),
 		params,
@@ -340,10 +340,10 @@ func handleClientTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "client:ticket-sales update", obj, format, transform)
+	return ShowJSON(os.Stdout, "ticket-sales update", obj, format, transform)
 }
 
-func handleClientTicketSalesList(ctx context.Context, cmd *cli.Command) error {
+func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 	client := believe.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 
@@ -351,7 +351,7 @@ func handleClientTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.ClientTicketSaleListParams{}
+	params := believe.TicketSaleListParams{}
 
 	options, err := flagOptions(
 		cmd,
@@ -369,23 +369,23 @@ func handleClientTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 	if format == "raw" {
 		var res []byte
 		options = append(options, option.WithResponseBodyInto(&res))
-		_, err = client.Client.TicketSales.List(ctx, params, options...)
+		_, err = client.TicketSales.List(ctx, params, options...)
 		if err != nil {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "client:ticket-sales list", obj, format, transform)
+		return ShowJSON(os.Stdout, "ticket-sales list", obj, format, transform)
 	} else {
-		iter := client.Client.TicketSales.ListAutoPaging(ctx, params, options...)
+		iter := client.TicketSales.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "client:ticket-sales list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, "ticket-sales list", iter, format, transform, maxItems)
 	}
 }
 
-func handleClientTicketSalesDelete(ctx context.Context, cmd *cli.Command) error {
+func handleTicketSalesDelete(ctx context.Context, cmd *cli.Command) error {
 	client := believe.NewClient(getDefaultRequestOptions(cmd)...)
 	unusedArgs := cmd.Args().Slice()
 	if !cmd.IsSet("ticket-sale-id") && len(unusedArgs) > 0 {
@@ -407,5 +407,5 @@ func handleClientTicketSalesDelete(ctx context.Context, cmd *cli.Command) error 
 		return err
 	}
 
-	return client.Client.TicketSales.Delete(ctx, cmd.Value("ticket-sale-id").(string), options...)
+	return client.TicketSales.Delete(ctx, cmd.Value("ticket-sale-id").(string), options...)
 }

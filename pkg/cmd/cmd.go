@@ -262,6 +262,18 @@ func init() {
 				},
 			},
 			{
+				Name:     "ticket-sales",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&ticketSalesCreate,
+					&ticketSalesRetrieve,
+					&ticketSalesUpdate,
+					&ticketSalesList,
+					&ticketSalesDelete,
+				},
+			},
+			{
 				Name:     "health",
 				Category: "API RESOURCE",
 				Suggest:  true,
@@ -283,18 +295,6 @@ func init() {
 				Suggest:  true,
 				Commands: []*cli.Command{
 					&clientWsTest,
-				},
-			},
-			{
-				Name:     "client:ticket-sales",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&clientTicketSalesCreate,
-					&clientTicketSalesRetrieve,
-					&clientTicketSalesUpdate,
-					&clientTicketSalesList,
-					&clientTicketSalesDelete,
 				},
 			},
 			{
