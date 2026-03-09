@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stainless-sdks/believe-cli/internal/apiquery"
-	"github.com/stainless-sdks/believe-cli/internal/requestflag"
-	"github.com/stainless-sdks/believe-go"
-	"github.com/stainless-sdks/believe-go/option"
+	"github.com/cjavdev/believe-cli/internal/apiquery"
+	"github.com/cjavdev/believe-cli/internal/requestflag"
+	"github.com/cjavdev/believe-go"
+	"github.com/cjavdev/believe-go/option"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
@@ -45,6 +45,10 @@ var coachingPrinciplesList = cli.Command{
 			Usage:     "Number of items to skip (offset)",
 			Default:   0,
 			QueryPath: "skip",
+		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
 		},
 	},
 	Action:          handleCoachingPrinciplesList,
@@ -129,7 +133,11 @@ func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "coaching:principles list", obj, format, transform)
 	} else {
 		iter := client.Coaching.Principles.ListAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "coaching:principles list", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "coaching:principles list", iter, format, transform, maxItems)
 	}
 }
 

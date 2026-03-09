@@ -5,13 +5,15 @@ package cmd
 import (
 	"testing"
 
-	"github.com/stainless-sdks/believe-cli/internal/mocktest"
+	"github.com/cjavdev/believe-cli/internal/mocktest"
 )
 
 func TestHealthCheck(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"health", "check",
-	)
+	t.Skip("Mock server tests are disabled")
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "health", "check",
+			"--api-key", "string",
+		)
+	})
 }

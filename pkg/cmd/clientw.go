@@ -6,8 +6,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stainless-sdks/believe-cli/internal/apiquery"
-	"github.com/stainless-sdks/believe-go"
+	"github.com/cjavdev/believe-cli/internal/apiquery"
+	"github.com/cjavdev/believe-go"
 	"github.com/urfave/cli/v3"
 )
 

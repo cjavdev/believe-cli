@@ -5,32 +5,39 @@ package cmd
 import (
 	"testing"
 
-	"github.com/stainless-sdks/believe-cli/internal/mocktest"
+	"github.com/cjavdev/believe-cli/internal/mocktest"
 )
 
 func TestCoachingPrinciplesRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"coaching:principles", "retrieve",
-		"--principle-id", "principle_id",
-	)
+	t.Skip("Mock server tests are disabled")
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "coaching:principles", "retrieve",
+			"--api-key", "string",
+			"--principle-id", "principle_id",
+		)
+	})
 }
 
 func TestCoachingPrinciplesList(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"coaching:principles", "list",
-		"--limit", "10",
-		"--skip", "0",
-	)
+	t.Skip("Mock server tests are disabled")
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "coaching:principles", "list",
+			"--api-key", "string",
+			"--max-items", "10",
+			"--limit", "10",
+			"--skip", "0",
+		)
+	})
 }
 
 func TestCoachingPrinciplesGetRandom(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"coaching:principles", "get-random",
-	)
+	t.Skip("Mock server tests are disabled")
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "coaching:principles", "get-random",
+			"--api-key", "string",
+		)
+	})
 }

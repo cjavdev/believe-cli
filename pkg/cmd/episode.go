@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stainless-sdks/believe-cli/internal/apiquery"
-	"github.com/stainless-sdks/believe-cli/internal/requestflag"
-	"github.com/stainless-sdks/believe-go"
-	"github.com/stainless-sdks/believe-go/option"
+	"github.com/cjavdev/believe-cli/internal/apiquery"
+	"github.com/cjavdev/believe-cli/internal/requestflag"
+	"github.com/cjavdev/believe-go"
+	"github.com/cjavdev/believe-go/option"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
@@ -226,6 +226,10 @@ var episodesList = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
+		&requestflag.Flag[int64]{
+			Name:  "max-items",
+			Usage: "The maximum number of items to return (use -1 for unlimited).",
+		},
 	},
 	Action:          handleEpisodesList,
 	HideHelpCommand: true,
@@ -256,32 +260,6 @@ var episodesGetWisdom = cli.Command{
 		},
 	},
 	Action:          handleEpisodesGetWisdom,
-	HideHelpCommand: true,
-}
-
-var episodesListBySeason = cli.Command{
-	Name:    "list-by-season",
-	Usage:   "Get a paginated list of episodes from a specific season.",
-	Suggest: true,
-	Flags: []cli.Flag{
-		&requestflag.Flag[int64]{
-			Name:     "season-number",
-			Required: true,
-		},
-		&requestflag.Flag[int64]{
-			Name:      "limit",
-			Usage:     "Maximum number of items to return (max: 100)",
-			Default:   20,
-			QueryPath: "limit",
-		},
-		&requestflag.Flag[int64]{
-			Name:      "skip",
-			Usage:     "Number of items to skip (offset)",
-			Default:   0,
-			QueryPath: "skip",
-		},
-	},
-	Action:          handleEpisodesListBySeason,
 	HideHelpCommand: true,
 }
 
@@ -430,7 +408,11 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(os.Stdout, "episodes list", obj, format, transform)
 	} else {
 		iter := client.Episodes.ListAutoPaging(ctx, params, options...)
-		return ShowJSONIterator(os.Stdout, "episodes list", iter, format, transform)
+		maxItems := int64(-1)
+		if cmd.IsSet("max-items") {
+			maxItems = cmd.Value("max-items").(int64)
+		}
+		return ShowJSONIterator(os.Stdout, "episodes list", iter, format, transform, maxItems)
 	}
 }
 
@@ -492,55 +474,4 @@ func handleEpisodesGetWisdom(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	transform := cmd.Root().String("transform")
 	return ShowJSON(os.Stdout, "episodes get-wisdom", obj, format, transform)
-}
-
-func handleEpisodesListBySeason(ctx context.Context, cmd *cli.Command) error {
-	client := believe.NewClient(getDefaultRequestOptions(cmd)...)
-	unusedArgs := cmd.Args().Slice()
-	if !cmd.IsSet("season-number") && len(unusedArgs) > 0 {
-		cmd.Set("season-number", unusedArgs[0])
-		unusedArgs = unusedArgs[1:]
-	}
-	if len(unusedArgs) > 0 {
-		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
-	}
-
-	params := believe.EpisodeListBySeasonParams{}
-
-	options, err := flagOptions(
-		cmd,
-		apiquery.NestedQueryFormatBrackets,
-		apiquery.ArrayQueryFormatComma,
-		EmptyBody,
-		false,
-	)
-	if err != nil {
-		return err
-	}
-
-	format := cmd.Root().String("format")
-	transform := cmd.Root().String("transform")
-	if format == "raw" {
-		var res []byte
-		options = append(options, option.WithResponseBodyInto(&res))
-		_, err = client.Episodes.ListBySeason(
-			ctx,
-			cmd.Value("season-number").(int64),
-			params,
-			options...,
-		)
-		if err != nil {
-			return err
-		}
-		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "episodes list-by-season", obj, format, transform)
-	} else {
-		iter := client.Episodes.ListBySeasonAutoPaging(
-			ctx,
-			cmd.Value("season-number").(int64),
-			params,
-			options...,
-		)
-		return ShowJSONIterator(os.Stdout, "episodes list-by-season", iter, format, transform)
-	}
 }

@@ -10,8 +10,8 @@ import (
 	"os"
 	"slices"
 
-	"github.com/stainless-sdks/believe-cli/pkg/cmd"
-	"github.com/stainless-sdks/believe-go"
+	"github.com/cjavdev/believe-cli/pkg/cmd"
+	"github.com/cjavdev/believe-go"
 	"github.com/tidwall/gjson"
 	"github.com/urfave/cli/v3"
 )
@@ -42,7 +42,11 @@ func main() {
 				fmt.Fprintf(os.Stderr, "%s\n", err.Error())
 			}
 		} else {
-			fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+			if cmd.CommandErrorBuffer.Len() > 0 {
+				os.Stderr.Write(cmd.CommandErrorBuffer.Bytes())
+			} else {
+				fmt.Fprintf(os.Stderr, "%s\n", err.Error())
+			}
 		}
 		os.Exit(exitCode)
 	}

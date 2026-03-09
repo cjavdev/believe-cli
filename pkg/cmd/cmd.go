@@ -3,6 +3,7 @@
 package cmd
 
 import (
+	"bytes"
 	"compress/gzip"
 	"context"
 	"fmt"
@@ -11,21 +12,24 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/stainless-sdks/believe-cli/internal/autocomplete"
+	"github.com/cjavdev/believe-cli/internal/autocomplete"
+	"github.com/cjavdev/believe-cli/internal/requestflag"
 	docs "github.com/urfave/cli-docs/v3"
 	"github.com/urfave/cli/v3"
 )
 
 var (
-	Command *cli.Command
+	Command            *cli.Command
+	CommandErrorBuffer bytes.Buffer
 )
 
 func init() {
 	Command = &cli.Command{
-		Name:    "believe",
-		Usage:   "CLI for the believe API",
-		Suggest: true,
-		Version: Version,
+		Name:      "believe",
+		Usage:     "CLI for the believe API",
+		Suggest:   true,
+		Version:   Version,
+		ErrWriter: &CommandErrorBuffer,
 		Flags: []cli.Flag{
 			&cli.BoolFlag{
 				Name:  "debug",
@@ -65,6 +69,10 @@ func init() {
 			&cli.StringFlag{
 				Name:  "transform-error",
 				Usage: "The GJSON transformation for errors.",
+			},
+			&requestflag.Flag[string]{
+				Name:    "api-key",
+				Sources: cli.EnvVars("BELIEVE_API_KEY"),
 			},
 		},
 		Commands: []*cli.Command{
@@ -141,7 +149,6 @@ func init() {
 					&episodesList,
 					&episodesDelete,
 					&episodesGetWisdom,
-					&episodesListBySeason,
 				},
 			},
 			{
@@ -276,6 +283,18 @@ func init() {
 				Suggest:  true,
 				Commands: []*cli.Command{
 					&clientWsTest,
+				},
+			},
+			{
+				Name:     "client:ticket-sales",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&clientTicketSalesCreate,
+					&clientTicketSalesRetrieve,
+					&clientTicketSalesUpdate,
+					&clientTicketSalesList,
+					&clientTicketSalesDelete,
 				},
 			},
 			{

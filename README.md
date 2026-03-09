@@ -4,6 +4,8 @@ The official CLI for the Believe REST API.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
+<!-- x-release-please-start-version -->
+
 ## Installation
 
 ### Installing with Go
@@ -11,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 To test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.
 
 ```sh
-go install 'github.com/stainless-sdks/believe-cli/cmd/believe@latest'
+go install 'github.com/cjavdev/believe-cli/cmd/believe@latest'
 ```
 
 Once you have run `go install`, the binary is placed in your Go bin directory:
@@ -25,6 +27,8 @@ If commands aren't found after installation, add the Go bin directory to your PA
 # Add to your shell profile (.zshrc, .bashrc, etc.)
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
+
+<!-- x-release-please-end -->
 
 ### Running Locally
 
@@ -45,17 +49,20 @@ believe [resource] <command> [flags...]
 
 ```sh
 believe characters list \
-  --limit 10 \
-  --min-optimism 0 \
-  --role coach \
-  --skip 0 \
-  --team-id team_id
+  --api-key 'My API Key'
 ```
 
 For details about specific commands, use the `--help` flag.
 
-### Global Flags
+### Environment variables
 
+| Environment variable | Required |
+| -------------------- | -------- |
+| `BELIEVE_API_KEY`    | yes      |
+
+### Global flags
+
+- `--api-key` (can also be set with `BELIEVE_API_KEY` env var)
 - `--help` - Show command line usage
 - `--debug` - Enable debug logging (includes HTTP request/response details)
 - `--version`, `-v` - Show the CLI version

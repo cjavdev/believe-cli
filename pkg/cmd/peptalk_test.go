@@ -5,14 +5,16 @@ package cmd
 import (
 	"testing"
 
-	"github.com/stainless-sdks/believe-cli/internal/mocktest"
+	"github.com/cjavdev/believe-cli/internal/mocktest"
 )
 
 func TestPepTalkRetrieve(t *testing.T) {
-	t.Skip("Prism tests are disabled")
-	mocktest.TestRunMockTestWithFlags(
-		t,
-		"pep-talk", "retrieve",
-		"--stream=true",
-	)
+	t.Skip("Mock server tests are disabled")
+	t.Run("regular flags", func(t *testing.T) {
+		mocktest.TestRunMockTestWithFlags(
+			t, "pep-talk", "retrieve",
+			"--api-key", "string",
+			"--stream=true",
+		)
+	})
 }
