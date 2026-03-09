@@ -8,11 +8,11 @@ import (
 	"github.com/cjavdev/believe-cli/internal/mocktest"
 )
 
-func TestClientTicketSalesCreate(t *testing.T) {
+func TestTicketSalesCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "client:ticket-sales", "create",
+			t, "ticket-sales", "create",
 			"--api-key", "string",
 			"--buyer-name", "Mae Green",
 			"--currency", "GBP",
@@ -45,28 +45,28 @@ func TestClientTicketSalesCreate(t *testing.T) {
 			"buyer_email: mae.green@example.com\n" +
 			"coupon_code: BELIEVE10\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "client:ticket-sales", "create",
+			t, pipeData, "ticket-sales", "create",
 			"--api-key", "string",
 		)
 	})
 }
 
-func TestClientTicketSalesRetrieve(t *testing.T) {
+func TestTicketSalesRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "client:ticket-sales", "retrieve",
+			t, "ticket-sales", "retrieve",
 			"--api-key", "string",
 			"--ticket-sale-id", "ticket_sale_id",
 		)
 	})
 }
 
-func TestClientTicketSalesUpdate(t *testing.T) {
+func TestTicketSalesUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "client:ticket-sales", "update",
+			t, "ticket-sales", "update",
 			"--api-key", "string",
 			"--ticket-sale-id", "ticket_sale_id",
 			"--buyer-email", "dev@stainless.com",
@@ -100,18 +100,18 @@ func TestClientTicketSalesUpdate(t *testing.T) {
 			"total: total\n" +
 			"unit_price: unit_price\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "client:ticket-sales", "update",
+			t, pipeData, "ticket-sales", "update",
 			"--api-key", "string",
 			"--ticket-sale-id", "ticket_sale_id",
 		)
 	})
 }
 
-func TestClientTicketSalesList(t *testing.T) {
+func TestTicketSalesList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "client:ticket-sales", "list",
+			t, "ticket-sales", "list",
 			"--api-key", "string",
 			"--max-items", "10",
 			"--coupon-code", "coupon_code",
@@ -124,11 +124,11 @@ func TestClientTicketSalesList(t *testing.T) {
 	})
 }
 
-func TestClientTicketSalesDelete(t *testing.T) {
+func TestTicketSalesDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "client:ticket-sales", "delete",
+			t, "ticket-sales", "delete",
 			"--api-key", "string",
 			"--ticket-sale-id", "ticket_sale_id",
 		)
