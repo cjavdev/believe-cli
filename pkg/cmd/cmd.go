@@ -286,6 +286,18 @@ func init() {
 				},
 			},
 			{
+				Name:     "client:ticket-sales",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&clientTicketSalesCreate,
+					&clientTicketSalesRetrieve,
+					&clientTicketSalesUpdate,
+					&clientTicketSalesList,
+					&clientTicketSalesDelete,
+				},
+			},
+			{
 				Name:            "@manpages",
 				Usage:           "Generate documentation for 'man'",
 				UsageText:       "believe @manpages [-o believe.1] [--gzip]",
