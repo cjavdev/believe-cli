@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (2026-03-09)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/cjavdev/believe-cli/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** manual updates ([f126e00](https://github.com/cjavdev/believe-cli/commit/f126e002c1aa7be74dc4ae27908d0759aee81580))
+
 ## 0.2.0 (2026-03-09)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/cjavdev/believe-cli/compare/v0.1.0...v0.2.0)
