@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1 (2026-03-12)
+
+Full Changelog: [v0.3.0...v0.3.1](https://github.com/cjavdev/believe-cli/compare/v0.3.0...v0.3.1)
+
+### Bug Fixes
+
+* fix for test cases with newlines in YAML and better error reporting ([09a5761](https://github.com/cjavdev/believe-cli/commit/09a57618e9c8e21862a8b90102e8966144950b6f))
+
 ## 0.3.0 (2026-03-09)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/cjavdev/believe-cli/compare/v0.2.0...v0.3.0)
