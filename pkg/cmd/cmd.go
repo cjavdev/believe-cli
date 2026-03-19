@@ -249,6 +249,18 @@ func init() {
 				},
 			},
 			{
+				Name:     "webhooks",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&webhooksCreate,
+					&webhooksRetrieve,
+					&webhooksList,
+					&webhooksDelete,
+					&webhooksTriggerEvent,
+				},
+			},
+			{
 				Name:            "@manpages",
 				Usage:           "Generate documentation for 'man'",
 				UsageText:       "believe @manpages [-o believe.1] [--gzip]",
