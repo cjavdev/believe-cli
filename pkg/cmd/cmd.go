@@ -76,6 +76,7 @@ func init() {
 			},
 		},
 		Commands: []*cli.Command{
+			&getWelcome,
 			{
 				Name:     "characters",
 				Category: "API RESOURCE",
@@ -258,6 +259,18 @@ func init() {
 					&webhooksList,
 					&webhooksDelete,
 					&webhooksTriggerEvent,
+				},
+			},
+			{
+				Name:     "ticket-sales",
+				Category: "API RESOURCE",
+				Suggest:  true,
+				Commands: []*cli.Command{
+					&ticketSalesCreate,
+					&ticketSalesRetrieve,
+					&ticketSalesUpdate,
+					&ticketSalesList,
+					&ticketSalesDelete,
 				},
 			},
 			{
