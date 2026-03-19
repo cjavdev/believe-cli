@@ -76,7 +76,6 @@ func init() {
 			},
 		},
 		Commands: []*cli.Command{
-			&getWelcome,
 			{
 				Name:     "characters",
 				Category: "API RESOURCE",
@@ -247,54 +246,6 @@ func init() {
 					&teamMembersListCoaches,
 					&teamMembersListPlayers,
 					&teamMembersListStaff,
-				},
-			},
-			{
-				Name:     "webhooks",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&webhooksCreate,
-					&webhooksRetrieve,
-					&webhooksList,
-					&webhooksDelete,
-					&webhooksTriggerEvent,
-				},
-			},
-			{
-				Name:     "ticket-sales",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&ticketSalesCreate,
-					&ticketSalesRetrieve,
-					&ticketSalesUpdate,
-					&ticketSalesList,
-					&ticketSalesDelete,
-				},
-			},
-			{
-				Name:     "health",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&healthCheck,
-				},
-			},
-			{
-				Name:     "version",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&versionRetrieve,
-				},
-			},
-			{
-				Name:     "client:ws",
-				Category: "API RESOURCE",
-				Suggest:  true,
-				Commands: []*cli.Command{
-					&clientWsTest,
 				},
 			},
 			{
