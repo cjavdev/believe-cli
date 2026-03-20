@@ -12,8 +12,9 @@ func TestGetWelcome(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "get-welcome",
+			t,
 			"--api-key", "string",
+			"get-welcome",
 		)
 	})
 }

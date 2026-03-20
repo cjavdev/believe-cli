@@ -12,8 +12,9 @@ func TestTeamMembersCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "create",
+			t,
 			"--api-key", "string",
+			"team-members", "create",
 			"--member", "{character_id: jamie-tartt, jersey_number: 9, position: forward, team_id: afc-richmond, years_with_team: 3, assists: 23, goals_scored: 47, is_captain: false, member_type: player}",
 		)
 	})
@@ -31,8 +32,9 @@ func TestTeamMembersCreate(t *testing.T) {
 			"is_captain: false\n" +
 			"member_type: player\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "team-members", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"team-members", "create",
 		)
 	})
 }
@@ -41,8 +43,9 @@ func TestTeamMembersRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "retrieve",
+			t,
 			"--api-key", "string",
+			"team-members", "retrieve",
 			"--member-id", "member_id",
 		)
 	})
@@ -52,8 +55,9 @@ func TestTeamMembersUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "update",
+			t,
 			"--api-key", "string",
+			"team-members", "update",
 			"--member-id", "member_id",
 			"--updates", "{assists: 0, goals_scored: 0, is_captain: true, jersey_number: 1, position: goalkeeper, team_id: team_id, years_with_team: 0}",
 		)
@@ -70,8 +74,9 @@ func TestTeamMembersUpdate(t *testing.T) {
 			"team_id: team_id\n" +
 			"years_with_team: 0\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "team-members", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"team-members", "update",
 			"--member-id", "member_id",
 		)
 	})
@@ -81,8 +86,9 @@ func TestTeamMembersList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "list",
+			t,
 			"--api-key", "string",
+			"team-members", "list",
 			"--max-items", "10",
 			"--limit", "10",
 			"--member-type", "player",
@@ -96,8 +102,9 @@ func TestTeamMembersDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "delete",
+			t,
 			"--api-key", "string",
+			"team-members", "delete",
 			"--member-id", "member_id",
 		)
 	})
@@ -107,8 +114,9 @@ func TestTeamMembersListCoaches(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "list-coaches",
+			t,
 			"--api-key", "string",
+			"team-members", "list-coaches",
 			"--max-items", "10",
 			"--limit", "10",
 			"--skip", "0",
@@ -122,8 +130,9 @@ func TestTeamMembersListPlayers(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "list-players",
+			t,
 			"--api-key", "string",
+			"team-members", "list-players",
 			"--max-items", "10",
 			"--limit", "10",
 			"--position", "goalkeeper",
@@ -137,8 +146,9 @@ func TestTeamMembersListStaff(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "team-members", "list-staff",
+			t,
 			"--api-key", "string",
+			"team-members", "list-staff",
 			"--max-items", "10",
 			"--limit", "10",
 			"--skip", "0",

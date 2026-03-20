@@ -12,8 +12,9 @@ func TestPressSimulate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "press", "simulate",
+			t,
 			"--api-key", "string",
+			"press", "simulate",
 			"--question", "Ted, your team just lost 5-0. How do you explain this embarrassing defeat?",
 			"--hostile=true",
 			"--topic", "match_result",
@@ -27,8 +28,9 @@ func TestPressSimulate(t *testing.T) {
 			"hostile: true\n" +
 			"topic: match_result\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "press", "simulate",
+			t, pipeData,
 			"--api-key", "string",
+			"press", "simulate",
 		)
 	})
 }
