@@ -13,8 +13,9 @@ func TestTeamsCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "create",
+			t,
 			"--api-key", "string",
+			"teams", "create",
 			"--culture-score", "70",
 			"--founded-year", "1895",
 			"--league", "Premier League",
@@ -42,8 +43,9 @@ func TestTeamsCreate(t *testing.T) {
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "create",
+			t,
 			"--api-key", "string",
+			"teams", "create",
 			"--culture-score", "70",
 			"--founded-year", "1895",
 			"--league", "Premier League",
@@ -99,8 +101,9 @@ func TestTeamsCreate(t *testing.T) {
 			"website: https://www.whufc.com\n" +
 			"win_percentage: 52.3\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "teams", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"teams", "create",
 		)
 	})
 }
@@ -109,8 +112,9 @@ func TestTeamsRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "retrieve",
+			t,
 			"--api-key", "string",
+			"teams", "retrieve",
 			"--team-id", "team_id",
 		)
 	})
@@ -120,8 +124,9 @@ func TestTeamsUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "update",
+			t,
 			"--api-key", "string",
+			"teams", "update",
 			"--team-id", "team_id",
 			"--annual-budget-gbp", "0",
 			"--average-attendance", "0",
@@ -149,8 +154,9 @@ func TestTeamsUpdate(t *testing.T) {
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "update",
+			t,
 			"--api-key", "string",
+			"teams", "update",
 			"--team-id", "team_id",
 			"--annual-budget-gbp", "0",
 			"--average-attendance", "0",
@@ -205,8 +211,9 @@ func TestTeamsUpdate(t *testing.T) {
 			"website: https://example.com\n" +
 			"win_percentage: 0\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "teams", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"teams", "update",
 			"--team-id", "team_id",
 		)
 	})
@@ -216,8 +223,9 @@ func TestTeamsList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "list",
+			t,
 			"--api-key", "string",
+			"teams", "list",
 			"--max-items", "10",
 			"--league", "Premier League",
 			"--limit", "10",
@@ -231,8 +239,9 @@ func TestTeamsDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "delete",
+			t,
 			"--api-key", "string",
+			"teams", "delete",
 			"--team-id", "team_id",
 		)
 	})
@@ -242,8 +251,9 @@ func TestTeamsGetCulture(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "get-culture",
+			t,
 			"--api-key", "string",
+			"teams", "get-culture",
 			"--team-id", "team_id",
 		)
 	})
@@ -253,8 +263,9 @@ func TestTeamsGetRivals(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "get-rivals",
+			t,
 			"--api-key", "string",
+			"teams", "get-rivals",
 			"--team-id", "team_id",
 		)
 	})
@@ -264,8 +275,9 @@ func TestTeamsListLogos(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "teams", "list-logos",
+			t,
 			"--api-key", "string",
+			"teams", "list-logos",
 			"--team-id", "team_id",
 		)
 	})

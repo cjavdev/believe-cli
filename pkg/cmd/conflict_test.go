@@ -12,8 +12,9 @@ func TestConflictsResolve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "conflicts", "resolve",
+			t,
 			"--api-key", "string",
+			"conflicts", "resolve",
 			"--conflict-type", "interpersonal",
 			"--description", "Alex keeps taking credit for my ideas in meetings and I'm getting resentful.",
 			"--parties-involved", "Me",
@@ -34,8 +35,9 @@ func TestConflictsResolve(t *testing.T) {
 			"  - Mentioned it casually\n" +
 			"  - Avoided them\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "conflicts", "resolve",
+			t, pipeData,
 			"--api-key", "string",
+			"conflicts", "resolve",
 		)
 	})
 }

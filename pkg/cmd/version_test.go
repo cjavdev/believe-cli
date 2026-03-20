@@ -12,8 +12,9 @@ func TestVersionRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "version", "retrieve",
+			t,
 			"--api-key", "string",
+			"version", "retrieve",
 		)
 	})
 }

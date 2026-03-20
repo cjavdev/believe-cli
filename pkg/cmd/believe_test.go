@@ -12,8 +12,9 @@ func TestBelieveSubmit(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "believe", "submit",
+			t,
 			"--api-key", "string",
+			"believe", "submit",
 			"--situation", "I just got passed over for a promotion I've been working toward for two years.",
 			"--situation-type", "work_challenge",
 			"--context", "I've always tried to be a team player and support my colleagues.",
@@ -29,8 +30,9 @@ func TestBelieveSubmit(t *testing.T) {
 			"context: I've always tried to be a team player and support my colleagues.\n" +
 			"intensity: 7\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "believe", "submit",
+			t, pipeData,
 			"--api-key", "string",
+			"believe", "submit",
 		)
 	})
 }

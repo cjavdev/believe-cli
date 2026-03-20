@@ -13,8 +13,9 @@ func TestCharactersCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "create",
+			t,
 			"--api-key", "string",
+			"characters", "create",
 			"--background", "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",
 			"--emotional-stats", "{curiosity: 40, empathy: 85, optimism: 45, resilience: 95, vulnerability: 60}",
 			"--name", "Roy Kent",
@@ -41,8 +42,9 @@ func TestCharactersCreate(t *testing.T) {
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "create",
+			t,
 			"--api-key", "string",
+			"characters", "create",
 			"--background", "Legendary midfielder for Chelsea and AFC Richmond, now assistant coach. Known for his gruff exterior hiding a heart of gold.",
 			"--emotional-stats.curiosity", "40",
 			"--emotional-stats.empathy", "85",
@@ -106,8 +108,9 @@ func TestCharactersCreate(t *testing.T) {
 			"  - Whistle!\n" +
 			"team_id: afc-richmond\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "characters", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"characters", "create",
 		)
 	})
 }
@@ -116,8 +119,9 @@ func TestCharactersRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "retrieve",
+			t,
 			"--api-key", "string",
+			"characters", "retrieve",
 			"--character-id", "character_id",
 		)
 	})
@@ -127,8 +131,9 @@ func TestCharactersUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "update",
+			t,
 			"--api-key", "string",
+			"characters", "update",
 			"--character-id", "character_id",
 			"--background", "background",
 			"--date-of-birth", "'2019-12-27'",
@@ -152,8 +157,9 @@ func TestCharactersUpdate(t *testing.T) {
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "update",
+			t,
 			"--api-key", "string",
+			"characters", "update",
 			"--character-id", "character_id",
 			"--background", "background",
 			"--date-of-birth", "'2019-12-27'",
@@ -208,8 +214,9 @@ func TestCharactersUpdate(t *testing.T) {
 			"  - string\n" +
 			"team_id: team_id\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "characters", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"characters", "update",
 			"--character-id", "character_id",
 		)
 	})
@@ -219,8 +226,9 @@ func TestCharactersList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "list",
+			t,
 			"--api-key", "string",
+			"characters", "list",
 			"--max-items", "10",
 			"--limit", "10",
 			"--min-optimism", "0",
@@ -235,8 +243,9 @@ func TestCharactersDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "delete",
+			t,
 			"--api-key", "string",
+			"characters", "delete",
 			"--character-id", "character_id",
 		)
 	})
@@ -246,8 +255,9 @@ func TestCharactersGetQuotes(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "characters", "get-quotes",
+			t,
 			"--api-key", "string",
+			"characters", "get-quotes",
 			"--character-id", "character_id",
 		)
 	})

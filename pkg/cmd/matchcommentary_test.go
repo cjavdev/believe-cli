@@ -12,8 +12,9 @@ func TestMatchesCommentaryStream(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches:commentary", "stream",
+			t,
 			"--api-key", "string",
+			"matches:commentary", "stream",
 			"--match-id", "match_id",
 		)
 	})

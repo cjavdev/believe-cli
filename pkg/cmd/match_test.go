@@ -13,8 +13,9 @@ func TestMatchesCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "create",
+			t,
 			"--api-key", "string",
+			"matches", "create",
 			"--away-team-id", "tottenham",
 			"--date", "'2024-02-20T19:45:00Z'",
 			"--home-team-id", "afc-richmond",
@@ -39,8 +40,9 @@ func TestMatchesCreate(t *testing.T) {
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "create",
+			t,
 			"--api-key", "string",
+			"matches", "create",
 			"--away-team-id", "tottenham",
 			"--date", "'2024-02-20T19:45:00Z'",
 			"--home-team-id", "afc-richmond",
@@ -89,8 +91,9 @@ func TestMatchesCreate(t *testing.T) {
 			"    character_involved: jamie-tartt\n" +
 			"weather_temp_celsius: 8.5\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "matches", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"matches", "create",
 		)
 	})
 }
@@ -99,8 +102,9 @@ func TestMatchesRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "retrieve",
+			t,
 			"--api-key", "string",
+			"matches", "retrieve",
 			"--match-id", "match_id",
 		)
 	})
@@ -110,8 +114,9 @@ func TestMatchesUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "update",
+			t,
 			"--api-key", "string",
+			"matches", "update",
 			"--match-id", "match_id",
 			"--attendance", "0",
 			"--away-score", "0",
@@ -137,8 +142,9 @@ func TestMatchesUpdate(t *testing.T) {
 
 		// Alternative argument passing style using inner flags
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "update",
+			t,
 			"--api-key", "string",
+			"matches", "update",
 			"--match-id", "match_id",
 			"--attendance", "0",
 			"--away-score", "0",
@@ -184,8 +190,9 @@ func TestMatchesUpdate(t *testing.T) {
 			"    character_involved: jamie-tartt\n" +
 			"weather_temp_celsius: -30\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "matches", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"matches", "update",
 			"--match-id", "match_id",
 		)
 	})
@@ -195,8 +202,9 @@ func TestMatchesList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "list",
+			t,
 			"--api-key", "string",
+			"matches", "list",
 			"--max-items", "10",
 			"--limit", "10",
 			"--match-type", "league",
@@ -211,8 +219,9 @@ func TestMatchesDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "delete",
+			t,
 			"--api-key", "string",
+			"matches", "delete",
 			"--match-id", "match_id",
 		)
 	})
@@ -222,8 +231,9 @@ func TestMatchesGetLesson(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "get-lesson",
+			t,
 			"--api-key", "string",
+			"matches", "get-lesson",
 			"--match-id", "match_id",
 		)
 	})
@@ -233,8 +243,9 @@ func TestMatchesGetTurningPoints(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "get-turning-points",
+			t,
 			"--api-key", "string",
+			"matches", "get-turning-points",
 			"--match-id", "match_id",
 		)
 	})
@@ -244,8 +255,9 @@ func TestMatchesStreamLive(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "matches", "stream-live",
+			t,
 			"--api-key", "string",
+			"matches", "stream-live",
 			"--away-team", "away_team",
 			"--excitement-level", "1",
 			"--home-team", "home_team",
