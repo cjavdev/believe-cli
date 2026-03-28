@@ -12,8 +12,9 @@ func TestClientWsTest(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "client:ws", "test",
+			t,
 			"--api-key", "string",
+			"client:ws", "test",
 		)
 	})
 }
