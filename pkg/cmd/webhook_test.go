@@ -12,8 +12,9 @@ func TestWebhooksCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "webhooks", "create",
+			t,
 			"--api-key", "string",
+			"webhooks", "create",
 			"--url", "https://example.com/webhooks",
 			"--description", "Production webhook for match notifications",
 			"--event-type", "[match.completed, team_member.transferred]",
@@ -29,8 +30,9 @@ func TestWebhooksCreate(t *testing.T) {
 			"  - match.completed\n" +
 			"  - team_member.transferred\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "webhooks", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"webhooks", "create",
 		)
 	})
 }
@@ -39,8 +41,9 @@ func TestWebhooksRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "webhooks", "retrieve",
+			t,
 			"--api-key", "string",
+			"webhooks", "retrieve",
 			"--webhook-id", "webhook_id",
 		)
 	})
@@ -50,8 +53,9 @@ func TestWebhooksList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "webhooks", "list",
+			t,
 			"--api-key", "string",
+			"webhooks", "list",
 		)
 	})
 }
@@ -60,8 +64,9 @@ func TestWebhooksDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "webhooks", "delete",
+			t,
 			"--api-key", "string",
+			"webhooks", "delete",
 			"--webhook-id", "webhook_id",
 		)
 	})
@@ -71,8 +76,9 @@ func TestWebhooksTriggerEvent(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "webhooks", "trigger-event",
+			t,
 			"--api-key", "string",
+			"webhooks", "trigger-event",
 			"--event-type", "match.completed",
 			"--payload", "{data: {away_score: 0, away_team_id: away_team_id, completed_at: '2019-12-27T18:11:19.117Z', home_score: 0, home_team_id: home_team_id, match_id: match_id, match_type: league, result: home_win, ted_post_match_quote: ted_post_match_quote, lesson_learned: lesson_learned, man_of_the_match: man_of_the_match}, event_type: match.completed}",
 		)
@@ -97,8 +103,9 @@ func TestWebhooksTriggerEvent(t *testing.T) {
 			"    man_of_the_match: man_of_the_match\n" +
 			"  event_type: match.completed\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "webhooks", "trigger-event",
+			t, pipeData,
 			"--api-key", "string",
+			"webhooks", "trigger-event",
 		)
 	})
 }

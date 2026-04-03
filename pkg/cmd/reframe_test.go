@@ -12,8 +12,9 @@ func TestReframeTransformNegativeThoughts(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "reframe", "transform-negative-thoughts",
+			t,
 			"--api-key", "string",
+			"reframe", "transform-negative-thoughts",
 			"--negative-thought", "I'm not good enough for this job.",
 			"--recurring=true",
 		)
@@ -25,8 +26,9 @@ func TestReframeTransformNegativeThoughts(t *testing.T) {
 			"negative_thought: I'm not good enough for this job.\n" +
 			"recurring: true\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "reframe", "transform-negative-thoughts",
+			t, pipeData,
 			"--api-key", "string",
+			"reframe", "transform-negative-thoughts",
 		)
 	})
 }

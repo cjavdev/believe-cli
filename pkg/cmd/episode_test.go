@@ -12,8 +12,9 @@ func TestEpisodesCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "episodes", "create",
+			t,
 			"--api-key", "string",
+			"episodes", "create",
 			"--air-date", "'2020-10-02'",
 			"--character-focus", "ted-lasso",
 			"--character-focus", "coach-beard",
@@ -65,8 +66,9 @@ func TestEpisodesCreate(t *testing.T) {
 			"us_viewers_millions: 1.42\n" +
 			"viewer_rating: 9.1\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "episodes", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"episodes", "create",
 		)
 	})
 }
@@ -75,8 +77,9 @@ func TestEpisodesRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "episodes", "retrieve",
+			t,
 			"--api-key", "string",
+			"episodes", "retrieve",
 			"--episode-id", "episode_id",
 		)
 	})
@@ -86,8 +89,9 @@ func TestEpisodesUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "episodes", "update",
+			t,
 			"--api-key", "string",
+			"episodes", "update",
 			"--episode-id", "episode_id",
 			"--air-date", "'2019-12-27'",
 			"--biscuits-with-boss-moment", "biscuits_with_boss_moment",
@@ -128,8 +132,9 @@ func TestEpisodesUpdate(t *testing.T) {
 			"viewer_rating: 0\n" +
 			"writer: writer\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "episodes", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"episodes", "update",
 			"--episode-id", "episode_id",
 		)
 	})
@@ -139,8 +144,9 @@ func TestEpisodesList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "episodes", "list",
+			t,
 			"--api-key", "string",
+			"episodes", "list",
 			"--max-items", "10",
 			"--character-focus", "character_focus",
 			"--limit", "10",
@@ -154,8 +160,9 @@ func TestEpisodesDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "episodes", "delete",
+			t,
 			"--api-key", "string",
+			"episodes", "delete",
 			"--episode-id", "episode_id",
 		)
 	})
@@ -165,8 +172,9 @@ func TestEpisodesGetWisdom(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "episodes", "get-wisdom",
+			t,
 			"--api-key", "string",
+			"episodes", "get-wisdom",
 			"--episode-id", "episode_id",
 		)
 	})

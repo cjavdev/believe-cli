@@ -12,8 +12,9 @@ func TestQuotesCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "create",
+			t,
 			"--api-key", "string",
+			"quotes", "create",
 			"--character-id", "ted-lasso",
 			"--context", "Ted's first team meeting, revealing his coaching philosophy",
 			"--moment-type", "locker_room",
@@ -46,8 +47,9 @@ func TestQuotesCreate(t *testing.T) {
 			"  - teamwork\n" +
 			"times_shared: 250000\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "quotes", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"quotes", "create",
 		)
 	})
 }
@@ -56,8 +58,9 @@ func TestQuotesRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "retrieve",
+			t,
 			"--api-key", "string",
+			"quotes", "retrieve",
 			"--quote-id", "quote_id",
 		)
 	})
@@ -67,8 +70,9 @@ func TestQuotesUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "update",
+			t,
 			"--api-key", "string",
+			"quotes", "update",
 			"--quote-id", "quote_id",
 			"--character-id", "character_id",
 			"--context", "context",
@@ -100,8 +104,9 @@ func TestQuotesUpdate(t *testing.T) {
 			"theme: belief\n" +
 			"times_shared: 0\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "quotes", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"quotes", "update",
 			"--quote-id", "quote_id",
 		)
 	})
@@ -111,8 +116,9 @@ func TestQuotesList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "list",
+			t,
 			"--api-key", "string",
+			"quotes", "list",
 			"--max-items", "10",
 			"--character-id", "character_id",
 			"--funny=true",
@@ -129,8 +135,9 @@ func TestQuotesDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "delete",
+			t,
 			"--api-key", "string",
+			"quotes", "delete",
 			"--quote-id", "quote_id",
 		)
 	})
@@ -140,8 +147,9 @@ func TestQuotesGetRandom(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "get-random",
+			t,
 			"--api-key", "string",
+			"quotes", "get-random",
 			"--character-id", "character_id",
 			"--inspirational=true",
 			"--theme", "belief",
@@ -153,8 +161,9 @@ func TestQuotesListByCharacter(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "list-by-character",
+			t,
 			"--api-key", "string",
+			"quotes", "list-by-character",
 			"--max-items", "10",
 			"--character-id", "character_id",
 			"--limit", "10",
@@ -167,8 +176,9 @@ func TestQuotesListByTheme(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "quotes", "list-by-theme",
+			t,
 			"--api-key", "string",
+			"quotes", "list-by-theme",
 			"--max-items", "10",
 			"--theme", "belief",
 			"--limit", "10",

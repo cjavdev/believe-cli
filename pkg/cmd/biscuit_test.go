@@ -12,8 +12,9 @@ func TestBiscuitsRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "biscuits", "retrieve",
+			t,
 			"--api-key", "string",
+			"biscuits", "retrieve",
 			"--biscuit-id", "biscuit_id",
 		)
 	})
@@ -23,8 +24,9 @@ func TestBiscuitsList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "biscuits", "list",
+			t,
 			"--api-key", "string",
+			"biscuits", "list",
 			"--max-items", "10",
 			"--limit", "10",
 			"--skip", "0",
@@ -36,8 +38,9 @@ func TestBiscuitsGetFresh(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "biscuits", "get-fresh",
+			t,
 			"--api-key", "string",
+			"biscuits", "get-fresh",
 		)
 	})
 }

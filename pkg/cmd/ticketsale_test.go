@@ -12,8 +12,9 @@ func TestTicketSalesCreate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "ticket-sales", "create",
+			t,
 			"--api-key", "string",
+			"ticket-sales", "create",
 			"--buyer-name", "Mae Green",
 			"--currency", "GBP",
 			"--discount", "9.00",
@@ -45,8 +46,9 @@ func TestTicketSalesCreate(t *testing.T) {
 			"buyer_email: mae.green@example.com\n" +
 			"coupon_code: BELIEVE10\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "ticket-sales", "create",
+			t, pipeData,
 			"--api-key", "string",
+			"ticket-sales", "create",
 		)
 	})
 }
@@ -55,8 +57,9 @@ func TestTicketSalesRetrieve(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "ticket-sales", "retrieve",
+			t,
 			"--api-key", "string",
+			"ticket-sales", "retrieve",
 			"--ticket-sale-id", "ticket_sale_id",
 		)
 	})
@@ -66,8 +69,9 @@ func TestTicketSalesUpdate(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "ticket-sales", "update",
+			t,
 			"--api-key", "string",
+			"ticket-sales", "update",
 			"--ticket-sale-id", "ticket_sale_id",
 			"--buyer-email", "dev@stainless.com",
 			"--buyer-name", "buyer_name",
@@ -100,8 +104,9 @@ func TestTicketSalesUpdate(t *testing.T) {
 			"total: total\n" +
 			"unit_price: unit_price\n")
 		mocktest.TestRunMockTestWithPipeAndFlags(
-			t, pipeData, "ticket-sales", "update",
+			t, pipeData,
 			"--api-key", "string",
+			"ticket-sales", "update",
 			"--ticket-sale-id", "ticket_sale_id",
 		)
 	})
@@ -111,8 +116,9 @@ func TestTicketSalesList(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "ticket-sales", "list",
+			t,
 			"--api-key", "string",
+			"ticket-sales", "list",
 			"--max-items", "10",
 			"--coupon-code", "coupon_code",
 			"--currency", "currency",
@@ -128,8 +134,9 @@ func TestTicketSalesDelete(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	t.Run("regular flags", func(t *testing.T) {
 		mocktest.TestRunMockTestWithFlags(
-			t, "ticket-sales", "delete",
+			t,
 			"--api-key", "string",
+			"ticket-sales", "delete",
 			"--ticket-sale-id", "ticket_sale_id",
 		)
 	})
