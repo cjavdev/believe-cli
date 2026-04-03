@@ -3,18 +3,18 @@
 package cmd
 
 import (
-	"testing"
+  "testing"
 
-	"github.com/cjavdev/believe-cli/internal/mocktest"
+  "github.com/cjavdev/believe-cli/internal/mocktest"
 )
 
 func TestStreamTestConnection(t *testing.T) {
-	t.Skip("Mock server tests are disabled")
-	t.Run("regular flags", func(t *testing.T) {
-		mocktest.TestRunMockTestWithFlags(
-			t,
-			"--api-key", "string",
-			"stream", "test-connection",
-		)
-	})
+  t.Skip("Mock server tests are disabled")
+  t.Run("regular flags", func(t *testing.T) {
+    mocktest.TestRunMockTestWithFlags(
+      t,
+      "--api-key", "string",
+      "stream", "test-connection",
+    )
+  })
 }

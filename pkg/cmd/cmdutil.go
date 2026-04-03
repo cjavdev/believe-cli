@@ -16,8 +16,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/cjavdev/believe-cli/internal/jsonview"
 	"github.com/cjavdev/believe-go/option"
+	"github.com/cjavdev/believe-cli/internal/jsonview"
 
 	"github.com/charmbracelet/x/term"
 	"github.com/itchyny/json2yaml"
@@ -46,14 +46,15 @@ func getDefaultRequestOptions(cmd *cli.Command) []option.RequestOption {
 		option.WithHeader("X-Stainless-Runtime", "cli"),
 		option.WithHeader("X-Stainless-CLI-Command", cmd.FullName()),
 	}
-	if cmd.IsSet("api-key") {
-		opts = append(opts, option.WithAPIKey(cmd.String("api-key")))
-	}
+if cmd.IsSet("api-key") {
+  opts = append(opts, option.WithAPIKey(cmd.String("api-key")))
+}
 
 	// Override base URL if the --base-url flag is provided
 	if baseURL := cmd.String("base-url"); baseURL != "" {
 		opts = append(opts, option.WithBaseURL(baseURL))
 	}
+
 
 	return opts
 }

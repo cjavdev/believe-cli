@@ -3,11 +3,11 @@ module github.com/cjavdev/believe-cli
 go 1.25
 
 require (
+
 	github.com/charmbracelet/bubbles v0.21.0
 	github.com/charmbracelet/bubbletea v1.3.6
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/charmbracelet/x/term v0.2.1
-	github.com/cjavdev/believe-go v0.4.1
 	github.com/goccy/go-yaml v1.18.0
 	github.com/itchyny/json2yaml v0.1.4
 	github.com/muesli/reflow v0.3.0
@@ -17,6 +17,7 @@ require (
 	github.com/urfave/cli-docs/v3 v3.0.0-alpha6
 	github.com/urfave/cli/v3 v3.3.2
 	golang.org/x/sys v0.38.0
+	golang.org/x/term v0.37.0
 )
 
 require (
