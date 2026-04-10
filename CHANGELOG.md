@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.4.1 (2026-04-10)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/cjavdev/believe-cli/compare/v0.4.0...v0.4.1)
+
+### Bug Fixes
+
+* fall back to main branch if linking fails in CI ([8ac0e4d](https://github.com/cjavdev/believe-cli/commit/8ac0e4dd27b239c3170834a634230ea9647c38f2))
+* fix for failing to drop invalid module replace in link script ([8170ff3](https://github.com/cjavdev/believe-cli/commit/8170ff3c49b6b84fbc0358aba125adbbe4b7dda3))
+* fix quoting typo ([ba21723](https://github.com/cjavdev/believe-cli/commit/ba21723f12726d87b22817c08a200c0620f0c07c))
+
+
+### Chores
+
+* **cli:** additional test cases for `ShowJSONIterator` ([3388c47](https://github.com/cjavdev/believe-cli/commit/3388c476117ff686398c936f805d049aa3c0dbd4))
+* **cli:** let `--format raw` be used in conjunction with `--transform` ([c9e47fd](https://github.com/cjavdev/believe-cli/commit/c9e47fda8cc5a9bf39a4fa1b697f743c996e80c8))
+* **internal:** codegen related update ([6e4d314](https://github.com/cjavdev/believe-cli/commit/6e4d3140a0a6085ccea2ad9be12e0740cc3bbbd3))
+* modify CLI tests to inject stdout so mutating `os.Stdout` isn't necessary ([8b0d57d](https://github.com/cjavdev/believe-cli/commit/8b0d57d69fde26668f886a337121d0c4c287e045))
+
 ## 0.4.0 (2026-04-03)
 
 Full Changelog: [v0.3.1...v0.4.0](https://github.com/cjavdev/believe-cli/compare/v0.3.1...v0.4.0)
