@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 (2026-04-13)
+
+Full Changelog: [v0.4.1...v0.5.0](https://github.com/cjavdev/believe-cli/compare/v0.4.1...v0.5.0)
+
+### Features
+
+* **api:** release PRs ([1527e97](https://github.com/cjavdev/believe-cli/commit/1527e97a4cd48cdb533b4726473ee8bf145570d9))
+
 ## 0.4.1 (2026-04-10)
 
 Full Changelog: [v0.4.0...v0.4.1](https://github.com/cjavdev/believe-cli/compare/v0.4.0...v0.4.1)
