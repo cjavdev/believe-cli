@@ -78,18 +78,3 @@ nfpms:
     contents:
       - src: man/man1/*.1.gz
         dst: /usr/share/man/man1/
-homebrew_casks:
-  - name: believe
-    repository:
-      owner: cjavdev
-      name: believe-cli-tap
-      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-
-    license: MIT
-    binary: "believe"
-    completions:
-      bash: "completions/believe.bash"
-      zsh: "completions/believe.zsh"
-      fish: "completions/believe.fish"
-    manpages:
-    - man/man1/believe.1.gz
