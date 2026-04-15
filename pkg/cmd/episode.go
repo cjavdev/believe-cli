@@ -293,8 +293,9 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "episodes create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "episodes create", obj, format, explicitFormat, transform)
 }
 
 func handleEpisodesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -328,8 +329,9 @@ func handleEpisodesRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "episodes retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "episodes retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -370,8 +372,9 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "episodes update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "episodes update", obj, format, explicitFormat, transform)
 }
 
 func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
@@ -396,6 +399,7 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -405,14 +409,14 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "episodes list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "episodes list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Episodes.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "episodes list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "episodes list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -472,6 +476,7 @@ func handleEpisodesGetWisdom(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "episodes get-wisdom", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "episodes get-wisdom", obj, format, explicitFormat, transform)
 }
