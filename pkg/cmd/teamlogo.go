@@ -146,8 +146,9 @@ func handleTeamsLogoDownload(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams:logo download", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams:logo download", obj, format, explicitFormat, transform)
 }
 
 func handleTeamsLogoUpload(ctx context.Context, cmd *cli.Command) error {
@@ -188,6 +189,7 @@ func handleTeamsLogoUpload(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams:logo upload", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams:logo upload", obj, format, explicitFormat, transform)
 }

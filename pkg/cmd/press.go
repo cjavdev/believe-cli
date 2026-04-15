@@ -72,6 +72,7 @@ func handlePressSimulate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "press simulate", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "press simulate", obj, format, explicitFormat, transform)
 }

@@ -342,8 +342,9 @@ func handleQuotesCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "quotes create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "quotes create", obj, format, explicitFormat, transform)
 }
 
 func handleQuotesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -377,8 +378,9 @@ func handleQuotesRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "quotes retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "quotes retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -419,8 +421,9 @@ func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "quotes update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "quotes update", obj, format, explicitFormat, transform)
 }
 
 func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
@@ -445,6 +448,7 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -454,14 +458,14 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "quotes list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "quotes list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Quotes.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "quotes list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "quotes list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -520,8 +524,9 @@ func handleQuotesGetRandom(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "quotes get-random", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "quotes get-random", obj, format, explicitFormat, transform)
 }
 
 func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
@@ -549,6 +554,7 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -563,7 +569,7 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "quotes list-by-character", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "quotes list-by-character", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Quotes.ListByCharacterAutoPaging(
 			ctx,
@@ -575,7 +581,7 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "quotes list-by-character", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "quotes list-by-character", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -604,6 +610,7 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -618,7 +625,7 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "quotes list-by-theme", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "quotes list-by-theme", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Quotes.ListByThemeAutoPaging(
 			ctx,
@@ -630,6 +637,6 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "quotes list-by-theme", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "quotes list-by-theme", iter, format, explicitFormat, transform, maxItems)
 	}
 }

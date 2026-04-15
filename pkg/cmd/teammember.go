@@ -248,8 +248,9 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "team-members create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "team-members create", obj, format, explicitFormat, transform)
 }
 
 func handleTeamMembersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -283,8 +284,9 @@ func handleTeamMembersRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "team-members retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "team-members retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -325,8 +327,9 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "team-members update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "team-members update", obj, format, explicitFormat, transform)
 }
 
 func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
@@ -351,6 +354,7 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -360,14 +364,14 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "team-members list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "team-members list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.TeamMembers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "team-members list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -418,6 +422,7 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -427,14 +432,14 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "team-members list-coaches", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "team-members list-coaches", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.TeamMembers.ListCoachesAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "team-members list-coaches", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list-coaches", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -460,6 +465,7 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -469,14 +475,14 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "team-members list-players", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "team-members list-players", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.TeamMembers.ListPlayersAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "team-members list-players", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list-players", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -502,6 +508,7 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -511,13 +518,13 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "team-members list-staff", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "team-members list-staff", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.TeamMembers.ListStaffAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "team-members list-staff", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list-staff", iter, format, explicitFormat, transform, maxItems)
 	}
 }

@@ -398,8 +398,9 @@ func handleTeamsCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams create", obj, format, explicitFormat, transform)
 }
 
 func handleTeamsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -433,8 +434,9 @@ func handleTeamsRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -475,8 +477,9 @@ func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams update", obj, format, explicitFormat, transform)
 }
 
 func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
@@ -501,6 +504,7 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -510,14 +514,14 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "teams list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "teams list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Teams.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "teams list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "teams list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -577,8 +581,9 @@ func handleTeamsGetCulture(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams get-culture", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams get-culture", obj, format, explicitFormat, transform)
 }
 
 func handleTeamsGetRivals(ctx context.Context, cmd *cli.Command) error {
@@ -612,8 +617,9 @@ func handleTeamsGetRivals(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams get-rivals", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams get-rivals", obj, format, explicitFormat, transform)
 }
 
 func handleTeamsListLogos(ctx context.Context, cmd *cli.Command) error {
@@ -647,6 +653,7 @@ func handleTeamsListLogos(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "teams list-logos", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "teams list-logos", obj, format, explicitFormat, transform)
 }

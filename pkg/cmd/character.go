@@ -386,8 +386,9 @@ func handleCharactersCreate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "characters create", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "characters create", obj, format, explicitFormat, transform)
 }
 
 func handleCharactersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -421,8 +422,9 @@ func handleCharactersRetrieve(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "characters retrieve", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "characters retrieve", obj, format, explicitFormat, transform)
 }
 
 func handleCharactersUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -463,8 +465,9 @@ func handleCharactersUpdate(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "characters update", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "characters update", obj, format, explicitFormat, transform)
 }
 
 func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
@@ -489,6 +492,7 @@ func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
 	}
 
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
 	if format == "raw" {
 		var res []byte
@@ -498,14 +502,14 @@ func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, "characters list", obj, format, transform)
+		return ShowJSON(os.Stdout, os.Stderr, "characters list", obj, format, explicitFormat, transform)
 	} else {
 		iter := client.Characters.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, "characters list", iter, format, transform, maxItems)
+		return ShowJSONIterator(os.Stdout, os.Stderr, "characters list", iter, format, explicitFormat, transform, maxItems)
 	}
 }
 
@@ -565,6 +569,7 @@ func handleCharactersGetQuotes(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "characters get-quotes", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "characters get-quotes", obj, format, explicitFormat, transform)
 }

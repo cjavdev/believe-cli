@@ -78,6 +78,7 @@ func handleBelieveSubmit(ctx context.Context, cmd *cli.Command) error {
 
 	obj := gjson.ParseBytes(res)
 	format := cmd.Root().String("format")
+	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, "believe submit", obj, format, transform)
+	return ShowJSON(os.Stdout, os.Stderr, "believe submit", obj, format, explicitFormat, transform)
 }
