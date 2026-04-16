@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/cjavdev/believe-cli/internal/apiquery"
 	"github.com/cjavdev/believe-cli/internal/requestflag"
@@ -97,7 +96,12 @@ func handleCoachingPrinciplesRetrieve(ctx context.Context, cmd *cli.Command) err
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "coaching:principles retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "coaching:principles retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
@@ -132,14 +136,24 @@ func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "coaching:principles list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "coaching:principles list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.Coaching.Principles.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "coaching:principles list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "coaching:principles list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -173,5 +187,10 @@ func handleCoachingPrinciplesGetRandom(ctx context.Context, cmd *cli.Command) er
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "coaching:principles get-random", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "coaching:principles get-random",
+		Transform:      transform,
+	})
 }

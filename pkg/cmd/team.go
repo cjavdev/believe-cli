@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/cjavdev/believe-cli/internal/apiquery"
 	"github.com/cjavdev/believe-cli/internal/requestflag"
@@ -400,7 +399,12 @@ func handleTeamsCreate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams create",
+		Transform:      transform,
+	})
 }
 
 func handleTeamsRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -436,7 +440,12 @@ func handleTeamsRetrieve(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -479,7 +488,12 @@ func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams update", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams update",
+		Transform:      transform,
+	})
 }
 
 func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
@@ -514,14 +528,24 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "teams list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "teams list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.Teams.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "teams list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "teams list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -583,7 +607,12 @@ func handleTeamsGetCulture(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams get-culture", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams get-culture",
+		Transform:      transform,
+	})
 }
 
 func handleTeamsGetRivals(ctx context.Context, cmd *cli.Command) error {
@@ -619,7 +648,12 @@ func handleTeamsGetRivals(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams get-rivals", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams get-rivals",
+		Transform:      transform,
+	})
 }
 
 func handleTeamsListLogos(ctx context.Context, cmd *cli.Command) error {
@@ -655,5 +689,10 @@ func handleTeamsListLogos(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams list-logos", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams list-logos",
+		Transform:      transform,
+	})
 }

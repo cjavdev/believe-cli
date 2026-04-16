@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/cjavdev/believe-cli/internal/apiquery"
 	"github.com/cjavdev/believe-cli/internal/requestflag"
@@ -250,7 +249,12 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "team-members create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "team-members create",
+		Transform:      transform,
+	})
 }
 
 func handleTeamMembersRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -286,7 +290,12 @@ func handleTeamMembersRetrieve(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "team-members retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "team-members retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -329,7 +338,12 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "team-members update", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "team-members update",
+		Transform:      transform,
+	})
 }
 
 func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
@@ -364,14 +378,24 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "team-members list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.TeamMembers.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -432,14 +456,24 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "team-members list-coaches", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list-coaches",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.TeamMembers.ListCoachesAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list-coaches", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list-coaches",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -475,14 +509,24 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "team-members list-players", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list-players",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.TeamMembers.ListPlayersAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list-players", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list-players",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -518,13 +562,23 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "team-members list-staff", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list-staff",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.TeamMembers.ListStaffAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "team-members list-staff", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "team-members list-staff",
+			Transform:      transform,
+		})
 	}
 }

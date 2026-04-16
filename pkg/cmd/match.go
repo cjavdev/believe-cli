@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/cjavdev/believe-cli/internal/apiquery"
 	"github.com/cjavdev/believe-cli/internal/requestflag"
@@ -391,7 +390,12 @@ func handleMatchesCreate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "matches create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "matches create",
+		Transform:      transform,
+	})
 }
 
 func handleMatchesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -427,7 +431,12 @@ func handleMatchesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "matches retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "matches retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleMatchesUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -470,7 +479,12 @@ func handleMatchesUpdate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "matches update", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "matches update",
+		Transform:      transform,
+	})
 }
 
 func handleMatchesList(ctx context.Context, cmd *cli.Command) error {
@@ -505,14 +519,24 @@ func handleMatchesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "matches list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "matches list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.Matches.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "matches list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "matches list",
+			Transform:      transform,
+		})
 	}
 }
 
@@ -574,7 +598,12 @@ func handleMatchesGetLesson(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "matches get-lesson", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "matches get-lesson",
+		Transform:      transform,
+	})
 }
 
 func handleMatchesGetTurningPoints(ctx context.Context, cmd *cli.Command) error {
@@ -610,7 +639,12 @@ func handleMatchesGetTurningPoints(ctx context.Context, cmd *cli.Command) error 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "matches get-turning-points", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "matches get-turning-points",
+		Transform:      transform,
+	})
 }
 
 func handleMatchesStreamLive(ctx context.Context, cmd *cli.Command) error {

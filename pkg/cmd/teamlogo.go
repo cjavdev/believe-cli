@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/cjavdev/believe-cli/internal/apiquery"
 	"github.com/cjavdev/believe-cli/internal/requestflag"
@@ -148,7 +147,12 @@ func handleTeamsLogoDownload(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams:logo download", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams:logo download",
+		Transform:      transform,
+	})
 }
 
 func handleTeamsLogoUpload(ctx context.Context, cmd *cli.Command) error {
@@ -191,5 +195,10 @@ func handleTeamsLogoUpload(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "teams:logo upload", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "teams:logo upload",
+		Transform:      transform,
+	})
 }

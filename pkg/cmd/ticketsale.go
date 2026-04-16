@@ -5,7 +5,6 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"github.com/cjavdev/believe-cli/internal/apiquery"
 	"github.com/cjavdev/believe-cli/internal/requestflag"
@@ -264,7 +263,12 @@ func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "ticket-sales create", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "ticket-sales create",
+		Transform:      transform,
+	})
 }
 
 func handleTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) error {
@@ -300,7 +304,12 @@ func handleTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "ticket-sales retrieve", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "ticket-sales retrieve",
+		Transform:      transform,
+	})
 }
 
 func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
@@ -343,7 +352,12 @@ func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
 	transform := cmd.Root().String("transform")
-	return ShowJSON(os.Stdout, os.Stderr, "ticket-sales update", obj, format, explicitFormat, transform)
+	return ShowJSON(obj, ShowJSONOpts{
+		ExplicitFormat: explicitFormat,
+		Format:         format,
+		Title:          "ticket-sales update",
+		Transform:      transform,
+	})
 }
 
 func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
@@ -378,14 +392,24 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 			return err
 		}
 		obj := gjson.ParseBytes(res)
-		return ShowJSON(os.Stdout, os.Stderr, "ticket-sales list", obj, format, explicitFormat, transform)
+		return ShowJSON(obj, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "ticket-sales list",
+			Transform:      transform,
+		})
 	} else {
 		iter := client.TicketSales.ListAutoPaging(ctx, params, options...)
 		maxItems := int64(-1)
 		if cmd.IsSet("max-items") {
 			maxItems = cmd.Value("max-items").(int64)
 		}
-		return ShowJSONIterator(os.Stdout, os.Stderr, "ticket-sales list", iter, format, explicitFormat, transform, maxItems)
+		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
+			ExplicitFormat: explicitFormat,
+			Format:         format,
+			Title:          "ticket-sales list",
+			Transform:      transform,
+		})
 	}
 }
 
