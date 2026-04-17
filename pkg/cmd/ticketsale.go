@@ -266,6 +266,7 @@ func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "ticket-sales create",
 		Transform:      transform,
 	})
@@ -307,6 +308,7 @@ func handleTicketSalesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "ticket-sales retrieve",
 		Transform:      transform,
 	})
@@ -355,6 +357,7 @@ func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "ticket-sales update",
 		Transform:      transform,
 	})
@@ -395,6 +398,7 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "ticket-sales list",
 			Transform:      transform,
 		})
@@ -407,6 +411,7 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "ticket-sales list",
 			Transform:      transform,
 		})

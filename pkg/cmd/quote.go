@@ -346,6 +346,7 @@ func handleQuotesCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "quotes create",
 		Transform:      transform,
 	})
@@ -387,6 +388,7 @@ func handleQuotesRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "quotes retrieve",
 		Transform:      transform,
 	})
@@ -435,6 +437,7 @@ func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "quotes update",
 		Transform:      transform,
 	})
@@ -475,6 +478,7 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "quotes list",
 			Transform:      transform,
 		})
@@ -487,6 +491,7 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "quotes list",
 			Transform:      transform,
 		})
@@ -553,6 +558,7 @@ func handleQuotesGetRandom(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "quotes get-random",
 		Transform:      transform,
 	})
@@ -601,6 +607,7 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "quotes list-by-character",
 			Transform:      transform,
 		})
@@ -618,6 +625,7 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "quotes list-by-character",
 			Transform:      transform,
 		})
@@ -667,6 +675,7 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "quotes list-by-theme",
 			Transform:      transform,
 		})
@@ -684,6 +693,7 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "quotes list-by-theme",
 			Transform:      transform,
 		})

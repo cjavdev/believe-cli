@@ -99,6 +99,7 @@ func handleCoachingPrinciplesRetrieve(ctx context.Context, cmd *cli.Command) err
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "coaching:principles retrieve",
 		Transform:      transform,
 	})
@@ -139,6 +140,7 @@ func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "coaching:principles list",
 			Transform:      transform,
 		})
@@ -151,6 +153,7 @@ func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "coaching:principles list",
 			Transform:      transform,
 		})
@@ -190,6 +193,7 @@ func handleCoachingPrinciplesGetRandom(ctx context.Context, cmd *cli.Command) er
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "coaching:principles get-random",
 		Transform:      transform,
 	})
