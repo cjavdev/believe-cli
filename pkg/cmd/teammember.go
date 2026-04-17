@@ -252,6 +252,7 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "team-members create",
 		Transform:      transform,
 	})
@@ -293,6 +294,7 @@ func handleTeamMembersRetrieve(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "team-members retrieve",
 		Transform:      transform,
 	})
@@ -341,6 +343,7 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 	return ShowJSON(obj, ShowJSONOpts{
 		ExplicitFormat: explicitFormat,
 		Format:         format,
+		RawOutput:      cmd.Root().Bool("raw-output"),
 		Title:          "team-members update",
 		Transform:      transform,
 	})
@@ -381,6 +384,7 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list",
 			Transform:      transform,
 		})
@@ -393,6 +397,7 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list",
 			Transform:      transform,
 		})
@@ -459,6 +464,7 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list-coaches",
 			Transform:      transform,
 		})
@@ -471,6 +477,7 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list-coaches",
 			Transform:      transform,
 		})
@@ -512,6 +519,7 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list-players",
 			Transform:      transform,
 		})
@@ -524,6 +532,7 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list-players",
 			Transform:      transform,
 		})
@@ -565,6 +574,7 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSON(obj, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list-staff",
 			Transform:      transform,
 		})
@@ -577,6 +587,7 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 		return ShowJSONIterator(iter, maxItems, ShowJSONOpts{
 			ExplicitFormat: explicitFormat,
 			Format:         format,
+			RawOutput:      cmd.Root().Bool("raw-output"),
 			Title:          "team-members list-staff",
 			Transform:      transform,
 		})
