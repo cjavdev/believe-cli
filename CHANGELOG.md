@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.6.0 (2026-04-18)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/cjavdev/believe-cli/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **cli:** add `--raw-output`/`-r` option to print raw (non-JSON) strings ([60278a5](https://github.com/cjavdev/believe-cli/commit/60278a56a1fad531964f65c8cd84cd11271141fe))
+* **cli:** alias parameters in data with `x-stainless-cli-data-alias` ([5ba7273](https://github.com/cjavdev/believe-cli/commit/5ba72737bec644bf34adaff5361e738c7f6a45b8))
+* **cli:** send filename and content type when reading input from files ([aefad6b](https://github.com/cjavdev/believe-cli/commit/aefad6b8bd3a80018b6a81f496226744edae09b3))
+
+
+### Chores
+
+* add documentation for ./scripts/link ([aa92acc](https://github.com/cjavdev/believe-cli/commit/aa92accef5b780aae606ed6a8ba280ea7f7fcefc))
+* **ci:** support manually triggering release workflow ([b1ac39e](https://github.com/cjavdev/believe-cli/commit/b1ac39ee7adcd83cdb257cec5a8bc309b232a91a))
+* **cli:** fall back to JSON when using default "explore" with non-TTY ([31024cc](https://github.com/cjavdev/believe-cli/commit/31024ccf6d29c8c33761bdb049b91592cd620529))
+* **cli:** switch long lists of positional args over to param structs ([e221d5a](https://github.com/cjavdev/believe-cli/commit/e221d5a129243c26e4206c8ce3a197cab49fb19b))
+* **cli:** use `ShowJSONOpts` as argument to `formatJSON` instead of many positionals ([4355bad](https://github.com/cjavdev/believe-cli/commit/4355bad4b33a6eb8fd9728b3112dc988f3c85158))
+
 ## 0.5.0 (2026-04-13)
 
 Full Changelog: [v0.4.1...v0.5.0](https://github.com/cjavdev/believe-cli/compare/v0.4.1...v0.5.0)
