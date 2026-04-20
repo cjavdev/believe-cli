@@ -10,17 +10,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ### Installing with Homebrew
 
-```sh
+~~~sh
 brew install cjavdev/believe-cli-tap https://github.com/cjavdev/believe-cli-tap/believe
-```
+~~~
 
 ### Installing with Go
 
 To test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.
 
-```sh
+~~~sh
 go install 'github.com/cjavdev/believe-cli/cmd/believe@latest'
-```
+~~~
 
 Once you have run `go install`, the binary is placed in your Go bin directory:
 
@@ -29,10 +29,10 @@ Once you have run `go install`, the binary is placed in your Go bin directory:
 
 If commands aren't found after installation, add the Go bin directory to your PATH:
 
-```sh
+~~~sh
 # Add to your shell profile (.zshrc, .bashrc, etc.)
 export PATH="$PATH:$(go env GOPATH)/bin"
-```
+~~~
 
 <!-- x-release-please-end -->
 
@@ -41,22 +41,22 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 After cloning the git repository for this project, you can use the
 `scripts/run` script to run the tool locally:
 
-```sh
+~~~sh
 ./scripts/run args...
-```
+~~~
 
 ## Usage
 
 The CLI follows a resource-based command structure:
 
-```sh
+~~~sh
 believe [resource] <command> [flags...]
-```
+~~~
 
-```sh
+~~~sh
 believe characters list \
   --api-key 'My API Key'
-```
+~~~
 
 For details about specific commands, use the `--help` flag.
 
@@ -82,27 +82,27 @@ For details about specific commands, use the `--help` flag.
 
 To pass files to your API, you can use the `@myfile.ext` syntax:
 
-```bash
+~~~bash
 believe <command> --arg @abe.jpg
-```
+~~~
 
 Files can also be passed inside JSON or YAML blobs:
 
-```bash
+~~~bash
 believe <command> --arg '{image: "@abe.jpg"}'
 # Equivalent:
 believe <command> <<YAML
 arg:
   image: "@abe.jpg"
 YAML
-```
+~~~
 
 If you need to pass a string literal that begins with an `@` sign, you can
 escape the `@` sign to avoid accidentally passing a file.
 
-```bash
+~~~bash
 believe <command> --username '\@abe'
-```
+~~~
 
 #### Explicit encoding
 
@@ -114,9 +114,9 @@ the file as either plain text or base64-encoded data, you can use
 base64-encoding). Note that absolute paths will begin with `@file://` or
 `@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).
 
-```bash
+~~~bash
 believe <command> --arg @data://file.txt
-```
+~~~
 
 ## Linking different Go SDK versions
 
@@ -126,14 +126,14 @@ for development purposes using the `./scripts/link` script.
 To link to a specific version from a repository (version can be a branch,
 git tag, or commit hash):
 
-```bash
+~~~bash
 ./scripts/link github.com/org/repo@version
-```
+~~~
 
 To link to a local copy of the SDK:
 
-```bash
+~~~bash
 ./scripts/link ../path/to/believe-go
-```
+~~~
 
 If you run the link script without any arguments, it will default to `../believe-go`.
