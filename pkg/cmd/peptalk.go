@@ -16,7 +16,7 @@ import (
 
 var pepTalkRetrieve = cli.Command{
 	Name:    "retrieve",
-	Usage:   "Get a motivational pep talk from Ted Lasso himself. By default returns the\ncomplete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming\nthe pep talk chunk by chunk.",
+	Usage:   "Get a motivational pep talk from Ted Lasso himself. By default returns the complete pep talk. Add `?stream=true` to get Server-Sent Events (SSE) streaming the pep talk chunk by chunk.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[bool]{

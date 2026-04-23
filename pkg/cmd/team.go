@@ -277,7 +277,7 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 
 var teamsList = cli.Command{
 	Name:    "list",
-	Usage:   "Get a paginated list of all teams with optional filtering by league or culture\nscore.",
+	Usage:   "Get a paginated list of all teams with optional filtering by league or culture score.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{

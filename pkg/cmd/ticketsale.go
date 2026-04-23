@@ -173,7 +173,7 @@ var ticketSalesUpdate = cli.Command{
 
 var ticketSalesList = cli.Command{
 	Name:    "list",
-	Usage:   "Get a paginated list of all ticket sales with optional filtering. With 300\nrecords, this endpoint is ideal for practicing pagination.",
+	Usage:   "Get a paginated list of all ticket sales with optional filtering. With 300 records, this endpoint is ideal for practicing pagination.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[any]{

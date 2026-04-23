@@ -200,7 +200,7 @@ var episodesUpdate = cli.Command{
 
 var episodesList = cli.Command{
 	Name:    "list",
-	Usage:   "Get a paginated list of all Ted Lasso episodes with optional filtering by\nseason.",
+	Usage:   "Get a paginated list of all Ted Lasso episodes with optional filtering by season.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[any]{

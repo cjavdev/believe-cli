@@ -30,7 +30,7 @@ var biscuitsRetrieve = cli.Command{
 
 var biscuitsList = cli.Command{
 	Name:    "list",
-	Usage:   "Get a paginated list of Ted's famous homemade biscuits! Each comes with a\nheartwarming message.",
+	Usage:   "Get a paginated list of Ted's famous homemade biscuits! Each comes with a heartwarming message.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[int64]{
