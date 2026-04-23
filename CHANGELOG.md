@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.1 (2026-04-23)
+
+Full Changelog: [v0.7.0...v0.7.1](https://github.com/cjavdev/believe-cli/compare/v0.7.0...v0.7.1)
+
+### Chores
+
+* **internal:** codegen related update ([e0bccb4](https://github.com/cjavdev/believe-cli/commit/e0bccb47a918dae0bd951dc13dc963acd555bfd2))
+* **internal:** more robust bootstrap script ([28c5d5c](https://github.com/cjavdev/believe-cli/commit/28c5d5cef968490fe3a05b41e6caea2c8f892508))
+
 ## 0.7.0 (2026-04-22)
 
 Full Changelog: [v0.6.1...v0.7.0](https://github.com/cjavdev/believe-cli/compare/v0.6.1...v0.7.0)
