@@ -155,8 +155,9 @@ var charactersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "character-id",
-			Required: true,
+			Name:      "character-id",
+			Required:  true,
+			PathParam: "character_id",
 		},
 	},
 	Action:          handleCharactersRetrieve,
@@ -169,8 +170,9 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "character-id",
-			Required: true,
+			Name:      "character-id",
+			Required:  true,
+			PathParam: "character_id",
 		},
 		&requestflag.Flag[*string]{
 			Name:     "background",
@@ -338,8 +340,9 @@ var charactersDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "character-id",
-			Required: true,
+			Name:      "character-id",
+			Required:  true,
+			PathParam: "character_id",
 		},
 	},
 	Action:          handleCharactersDelete,
@@ -352,8 +355,9 @@ var charactersGetQuotes = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "character-id",
-			Required: true,
+			Name:      "character-id",
+			Required:  true,
+			PathParam: "character_id",
 		},
 	},
 	Action:          handleCharactersGetQuotes,
@@ -368,8 +372,6 @@ func handleCharactersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.CharacterNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -380,6 +382,8 @@ func handleCharactersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.CharacterNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -454,8 +458,6 @@ func handleCharactersUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.CharacterUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -466,6 +468,8 @@ func handleCharactersUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.CharacterUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -500,8 +504,6 @@ func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.CharacterListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -512,6 +514,8 @@ func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.CharacterListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

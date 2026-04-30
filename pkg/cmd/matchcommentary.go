@@ -20,8 +20,9 @@ var matchesCommentaryStream = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesCommentaryStream,

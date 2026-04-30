@@ -92,8 +92,9 @@ var quotesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "quote-id",
-			Required: true,
+			Name:      "quote-id",
+			Required:  true,
+			PathParam: "quote_id",
 		},
 	},
 	Action:          handleQuotesRetrieve,
@@ -106,8 +107,9 @@ var quotesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "quote-id",
-			Required: true,
+			Name:      "quote-id",
+			Required:  true,
+			PathParam: "quote_id",
 		},
 		&requestflag.Flag[*string]{
 			Name:     "character-id",
@@ -217,8 +219,9 @@ var quotesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "quote-id",
-			Required: true,
+			Name:      "quote-id",
+			Required:  true,
+			PathParam: "quote_id",
 		},
 	},
 	Action:          handleQuotesDelete,
@@ -256,8 +259,9 @@ var quotesListByCharacter = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "character-id",
-			Required: true,
+			Name:      "character-id",
+			Required:  true,
+			PathParam: "character_id",
 		},
 		&requestflag.Flag[int64]{
 			Name:      "limit",
@@ -286,9 +290,10 @@ var quotesListByTheme = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "theme",
-			Usage:    "Themes that quotes can be categorized under.",
-			Required: true,
+			Name:      "theme",
+			Usage:     "Themes that quotes can be categorized under.",
+			Required:  true,
+			PathParam: "theme",
 		},
 		&requestflag.Flag[int64]{
 			Name:      "limit",
@@ -319,8 +324,6 @@ func handleQuotesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -331,6 +334,8 @@ func handleQuotesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -405,8 +410,6 @@ func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -417,6 +420,8 @@ func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -451,8 +456,6 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -463,6 +466,8 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -531,8 +536,6 @@ func handleQuotesGetRandom(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteGetRandomParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -543,6 +546,8 @@ func handleQuotesGetRandom(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteGetRandomParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -575,8 +580,6 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteListByCharacterParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -587,6 +590,8 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteListByCharacterParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -643,8 +648,6 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteListByThemeParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -655,6 +658,8 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteListByThemeParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

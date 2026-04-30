@@ -55,8 +55,6 @@ func handleConflictsResolve(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.ConflictResolveParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -67,6 +65,8 @@ func handleConflictsResolve(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.ConflictResolveParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
