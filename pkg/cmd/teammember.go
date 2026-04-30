@@ -75,7 +75,7 @@ var teamMembersList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "member-type",
 			Usage:     "Filter by member type",
 			QueryPath: "member_type",
@@ -86,7 +86,7 @@ var teamMembersList = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -131,12 +131,12 @@ var teamMembersListCoaches = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "specialty",
 			Usage:     "Coaching specialties.",
 			QueryPath: "specialty",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -161,7 +161,7 @@ var teamMembersListPlayers = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "position",
 			Usage:     "Football positions for players.",
 			QueryPath: "position",
@@ -172,7 +172,7 @@ var teamMembersListPlayers = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -203,7 +203,7 @@ var teamMembersListStaff = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
