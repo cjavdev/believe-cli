@@ -31,7 +31,7 @@ var pressSimulate = cli.Command{
 			Default:  false,
 			BodyPath: "hostile",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "topic",
 			Usage:    "Topic category",
 			BodyPath: "topic",
