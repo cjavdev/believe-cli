@@ -20,8 +20,9 @@ var biscuitsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "biscuit-id",
-			Required: true,
+			Name:      "biscuit-id",
+			Required:  true,
+			PathParam: "biscuit_id",
 		},
 	},
 	Action:          handleBiscuitsRetrieve,
@@ -113,8 +114,6 @@ func handleBiscuitsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.BiscuitListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -125,6 +124,8 @@ func handleBiscuitsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.BiscuitListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

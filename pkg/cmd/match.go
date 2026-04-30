@@ -134,8 +134,9 @@ var matchesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesRetrieve,
@@ -148,8 +149,9 @@ var matchesUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 		&requestflag.Flag[*int64]{
 			Name:     "attendance",
@@ -292,8 +294,9 @@ var matchesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesDelete,
@@ -306,8 +309,9 @@ var matchesGetLesson = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesGetLesson,
@@ -320,8 +324,9 @@ var matchesGetTurningPoints = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesGetTurningPoints,
@@ -370,8 +375,6 @@ func handleMatchesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -382,6 +385,8 @@ func handleMatchesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -456,8 +461,6 @@ func handleMatchesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -468,6 +471,8 @@ func handleMatchesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -502,8 +507,6 @@ func handleMatchesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -514,6 +517,8 @@ func handleMatchesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -666,8 +671,6 @@ func handleMatchesStreamLive(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchStreamLiveParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -678,6 +681,8 @@ func handleMatchesStreamLive(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchStreamLiveParams{}
 
 	return client.Matches.StreamLive(ctx, params, options...)
 }
