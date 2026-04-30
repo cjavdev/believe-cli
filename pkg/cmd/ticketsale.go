@@ -100,8 +100,9 @@ var ticketSalesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ticket-sale-id",
-			Required: true,
+			Name:      "ticket-sale-id",
+			Required:  true,
+			PathParam: "ticket_sale_id",
 		},
 	},
 	Action:          handleTicketSalesRetrieve,
@@ -114,8 +115,9 @@ var ticketSalesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ticket-sale-id",
-			Required: true,
+			Name:      "ticket-sale-id",
+			Required:  true,
+			PathParam: "ticket_sale_id",
 		},
 		&requestflag.Flag[*string]{
 			Name:     "buyer-email",
@@ -223,8 +225,9 @@ var ticketSalesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ticket-sale-id",
-			Required: true,
+			Name:      "ticket-sale-id",
+			Required:  true,
+			PathParam: "ticket_sale_id",
 		},
 	},
 	Action:          handleTicketSalesDelete,
@@ -239,8 +242,6 @@ func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TicketSaleNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -251,6 +252,8 @@ func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TicketSaleNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -325,8 +328,6 @@ func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TicketSaleUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -337,6 +338,8 @@ func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TicketSaleUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -371,8 +374,6 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TicketSaleListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -383,6 +384,8 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TicketSaleListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
