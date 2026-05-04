@@ -43,7 +43,7 @@ var matchesCreate = requestflag.WithInnerFlags(cli.Command{
 			Required: true,
 			BodyPath: "match_type",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "attendance",
 			Usage:    "Match attendance",
 			BodyPath: "attendance",
@@ -54,7 +54,7 @@ var matchesCreate = requestflag.WithInnerFlags(cli.Command{
 			Default:  0,
 			BodyPath: "away_score",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "episode-id",
 			Usage:    "Episode ID where this match is featured",
 			BodyPath: "episode_id",
@@ -65,12 +65,12 @@ var matchesCreate = requestflag.WithInnerFlags(cli.Command{
 			Default:  0,
 			BodyPath: "home_score",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "lesson-learned",
 			Usage:    "The life lesson learned from this match",
 			BodyPath: "lesson_learned",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "possession-percentage",
 			Usage:    "Home team possession percentage",
 			BodyPath: "possession_percentage",
@@ -80,7 +80,7 @@ var matchesCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Match result types.",
 			BodyPath: "result",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "ted-halftime-speech",
 			Usage:    "Ted's inspirational halftime speech",
 			BodyPath: "ted_halftime_speech",
@@ -95,7 +95,7 @@ var matchesCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Key moments that changed the match",
 			BodyPath: "turning_points",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "weather-temp-celsius",
 			Usage:    "Temperature at kickoff in Celsius",
 			BodyPath: "weather_temp_celsius",
@@ -120,7 +120,7 @@ var matchesCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:      "Minute of the match",
 			InnerField: "minute",
 		},
-		&requestflag.InnerFlag[any]{
+		&requestflag.InnerFlag[*string]{
 			Name:       "turning-point.character-involved",
 			Usage:      "Character ID who was central to this moment",
 			InnerField: "character_involved",
@@ -134,8 +134,9 @@ var matchesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesRetrieve,
@@ -148,18 +149,19 @@ var matchesUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "attendance",
 			BodyPath: "attendance",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "away-score",
 			BodyPath: "away_score",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "away-team-id",
 			BodyPath: "away_team_id",
 		},
@@ -167,37 +169,37 @@ var matchesUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "date",
 			BodyPath: "date",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "episode-id",
 			BodyPath: "episode_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "home-score",
 			BodyPath: "home_score",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "home-team-id",
 			BodyPath: "home_team_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "lesson-learned",
 			BodyPath: "lesson_learned",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "match-type",
 			Usage:    "Types of matches.",
 			BodyPath: "match_type",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "possession-percentage",
 			BodyPath: "possession_percentage",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "result",
 			Usage:    "Match result types.",
 			BodyPath: "result",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "ted-halftime-speech",
 			BodyPath: "ted_halftime_speech",
 		},
@@ -209,7 +211,7 @@ var matchesUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "turning-point",
 			BodyPath: "turning_points",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "weather-temp-celsius",
 			BodyPath: "weather_temp_celsius",
 		},
@@ -219,24 +221,28 @@ var matchesUpdate = requestflag.WithInnerFlags(cli.Command{
 }, map[string][]requestflag.HasOuterFlag{
 	"turning-point": {
 		&requestflag.InnerFlag[string]{
-			Name:       "turning-point.description",
-			Usage:      "What happened",
-			InnerField: "description",
+			Name:                  "turning-point.description",
+			Usage:                 "What happened",
+			InnerField:            "description",
+			OuterIsArrayOfObjects: true,
 		},
 		&requestflag.InnerFlag[string]{
-			Name:       "turning-point.emotional-impact",
-			Usage:      "How this affected the team emotionally",
-			InnerField: "emotional_impact",
+			Name:                  "turning-point.emotional-impact",
+			Usage:                 "How this affected the team emotionally",
+			InnerField:            "emotional_impact",
+			OuterIsArrayOfObjects: true,
 		},
 		&requestflag.InnerFlag[int64]{
-			Name:       "turning-point.minute",
-			Usage:      "Minute of the match",
-			InnerField: "minute",
+			Name:                  "turning-point.minute",
+			Usage:                 "Minute of the match",
+			InnerField:            "minute",
+			OuterIsArrayOfObjects: true,
 		},
-		&requestflag.InnerFlag[any]{
-			Name:       "turning-point.character-involved",
-			Usage:      "Character ID who was central to this moment",
-			InnerField: "character_involved",
+		&requestflag.InnerFlag[*string]{
+			Name:                  "turning-point.character-involved",
+			Usage:                 "Character ID who was central to this moment",
+			InnerField:            "character_involved",
+			OuterIsArrayOfObjects: true,
 		},
 	},
 })
@@ -252,12 +258,12 @@ var matchesList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "match-type",
 			Usage:     "Types of matches.",
 			QueryPath: "match_type",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "result",
 			Usage:     "Match result types.",
 			QueryPath: "result",
@@ -268,7 +274,7 @@ var matchesList = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "team-id",
 			Usage:     "Filter by team (home or away)",
 			QueryPath: "team_id",
@@ -288,8 +294,9 @@ var matchesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesDelete,
@@ -302,8 +309,9 @@ var matchesGetLesson = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesGetLesson,
@@ -316,8 +324,9 @@ var matchesGetTurningPoints = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "match-id",
-			Required: true,
+			Name:      "match-id",
+			Required:  true,
+			PathParam: "match_id",
 		},
 	},
 	Action:          handleMatchesGetTurningPoints,
@@ -366,8 +375,6 @@ func handleMatchesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -378,6 +385,8 @@ func handleMatchesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -452,8 +461,6 @@ func handleMatchesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -464,6 +471,8 @@ func handleMatchesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -498,8 +507,6 @@ func handleMatchesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -510,6 +517,8 @@ func handleMatchesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -662,8 +671,6 @@ func handleMatchesStreamLive(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.MatchStreamLiveParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -674,6 +681,8 @@ func handleMatchesStreamLive(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.MatchStreamLiveParams{}
 
 	return client.Matches.StreamLive(ctx, params, options...)
 }

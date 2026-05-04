@@ -49,7 +49,7 @@ var quotesCreate = cli.Command{
 			Required: true,
 			BodyPath: "theme",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "episode-id",
 			Usage:    "Episode where the quote appears",
 			BodyPath: "episode_id",
@@ -66,7 +66,7 @@ var quotesCreate = cli.Command{
 			Default:  true,
 			BodyPath: "is_inspirational",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "popularity-score",
 			Usage:    "Popularity/virality score (0-100)",
 			BodyPath: "popularity_score",
@@ -76,7 +76,7 @@ var quotesCreate = cli.Command{
 			Usage:    "Additional themes",
 			BodyPath: "secondary_themes",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "times-shared",
 			Usage:    "Number of times shared on social media",
 			BodyPath: "times_shared",
@@ -92,8 +92,9 @@ var quotesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "quote-id",
-			Required: true,
+			Name:      "quote-id",
+			Required:  true,
+			PathParam: "quote_id",
 		},
 	},
 	Action:          handleQuotesRetrieve,
@@ -106,35 +107,36 @@ var quotesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "quote-id",
-			Required: true,
+			Name:      "quote-id",
+			Required:  true,
+			PathParam: "quote_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "character-id",
 			BodyPath: "character_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "context",
 			BodyPath: "context",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "episode-id",
 			BodyPath: "episode_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*bool]{
 			Name:     "is-funny",
 			BodyPath: "is_funny",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*bool]{
 			Name:     "is-inspirational",
 			BodyPath: "is_inspirational",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "moment-type",
 			Usage:    "Types of moments when quotes occur.",
 			BodyPath: "moment_type",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "popularity-score",
 			BodyPath: "popularity_score",
 		},
@@ -142,16 +144,16 @@ var quotesUpdate = cli.Command{
 			Name:     "secondary-theme",
 			BodyPath: "secondary_themes",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "text",
 			BodyPath: "text",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "theme",
 			Usage:    "Themes that quotes can be categorized under.",
 			BodyPath: "theme",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "times-shared",
 			BodyPath: "times_shared",
 		},
@@ -165,17 +167,17 @@ var quotesList = cli.Command{
 	Usage:   "Get a paginated list of all memorable Ted Lasso quotes with optional filtering.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "character-id",
 			Usage:     "Filter by character",
 			QueryPath: "character_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*bool]{
 			Name:      "funny",
 			Usage:     "Filter funny quotes",
 			QueryPath: "funny",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*bool]{
 			Name:      "inspirational",
 			Usage:     "Filter inspirational quotes",
 			QueryPath: "inspirational",
@@ -186,7 +188,7 @@ var quotesList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "moment-type",
 			Usage:     "Types of moments when quotes occur.",
 			QueryPath: "moment_type",
@@ -197,7 +199,7 @@ var quotesList = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "theme",
 			Usage:     "Themes that quotes can be categorized under.",
 			QueryPath: "theme",
@@ -217,8 +219,9 @@ var quotesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "quote-id",
-			Required: true,
+			Name:      "quote-id",
+			Required:  true,
+			PathParam: "quote_id",
 		},
 	},
 	Action:          handleQuotesDelete,
@@ -230,17 +233,17 @@ var quotesGetRandom = cli.Command{
 	Usage:   "Get a random Ted Lasso quote, optionally filtered.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "character-id",
 			Usage:     "Filter by character",
 			QueryPath: "character_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*bool]{
 			Name:      "inspirational",
 			Usage:     "Filter inspirational quotes",
 			QueryPath: "inspirational",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "theme",
 			Usage:     "Themes that quotes can be categorized under.",
 			QueryPath: "theme",
@@ -256,8 +259,9 @@ var quotesListByCharacter = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "character-id",
-			Required: true,
+			Name:      "character-id",
+			Required:  true,
+			PathParam: "character_id",
 		},
 		&requestflag.Flag[int64]{
 			Name:      "limit",
@@ -286,9 +290,10 @@ var quotesListByTheme = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "theme",
-			Usage:    "Themes that quotes can be categorized under.",
-			Required: true,
+			Name:      "theme",
+			Usage:     "Themes that quotes can be categorized under.",
+			Required:  true,
+			PathParam: "theme",
 		},
 		&requestflag.Flag[int64]{
 			Name:      "limit",
@@ -319,8 +324,6 @@ func handleQuotesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -331,6 +334,8 @@ func handleQuotesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -405,8 +410,6 @@ func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -417,6 +420,8 @@ func handleQuotesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -451,8 +456,6 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -463,6 +466,8 @@ func handleQuotesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -531,8 +536,6 @@ func handleQuotesGetRandom(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteGetRandomParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -543,6 +546,8 @@ func handleQuotesGetRandom(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteGetRandomParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -575,8 +580,6 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteListByCharacterParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -587,6 +590,8 @@ func handleQuotesListByCharacter(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteListByCharacterParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -643,8 +648,6 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.QuoteListByThemeParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -655,6 +658,8 @@ func handleQuotesListByTheme(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.QuoteListByThemeParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

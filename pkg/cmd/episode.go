@@ -85,7 +85,7 @@ var episodesCreate = cli.Command{
 			Required: true,
 			BodyPath: "writer",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "biscuits-with-boss-moment",
 			Usage:    "Notable biscuits with the boss scene",
 			BodyPath: "biscuits_with_boss_moment",
@@ -95,12 +95,12 @@ var episodesCreate = cli.Command{
 			Usage:    "Standout moments from the episode",
 			BodyPath: "memorable_moments",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "us-viewers-millions",
 			Usage:    "US viewership in millions",
 			BodyPath: "us_viewers_millions",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "viewer-rating",
 			Usage:    "Viewer rating out of 10",
 			BodyPath: "viewer_rating",
@@ -116,8 +116,9 @@ var episodesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 	},
 	Action:          handleEpisodesRetrieve,
@@ -130,14 +131,15 @@ var episodesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 		&requestflag.Flag[any]{
 			Name:     "air-date",
 			BodyPath: "air_date",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "biscuits-with-boss-moment",
 			BodyPath: "biscuits_with_boss_moment",
 		},
@@ -145,15 +147,15 @@ var episodesUpdate = cli.Command{
 			Name:     "character-focus",
 			BodyPath: "character_focus",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "director",
 			BodyPath: "director",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "episode-number",
 			BodyPath: "episode_number",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "main-theme",
 			BodyPath: "main_theme",
 		},
@@ -161,35 +163,35 @@ var episodesUpdate = cli.Command{
 			Name:     "memorable-moment",
 			BodyPath: "memorable_moments",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "runtime-minutes",
 			BodyPath: "runtime_minutes",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "season",
 			BodyPath: "season",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "synopsis",
 			BodyPath: "synopsis",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "ted-wisdom",
 			BodyPath: "ted_wisdom",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "title",
 			BodyPath: "title",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "us-viewers-millions",
 			BodyPath: "us_viewers_millions",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "viewer-rating",
 			BodyPath: "viewer_rating",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "writer",
 			BodyPath: "writer",
 		},
@@ -203,7 +205,7 @@ var episodesList = cli.Command{
 	Usage:   "Get a paginated list of all Ted Lasso episodes with optional filtering by\nseason.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "character-focus",
 			Usage:     "Filter by character focus (character ID)",
 			QueryPath: "character_focus",
@@ -214,7 +216,7 @@ var episodesList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:      "season",
 			Usage:     "Filter by season",
 			QueryPath: "season",
@@ -240,8 +242,9 @@ var episodesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 	},
 	Action:          handleEpisodesDelete,
@@ -254,8 +257,9 @@ var episodesGetWisdom = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 	},
 	Action:          handleEpisodesGetWisdom,
@@ -270,8 +274,6 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.EpisodeNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -282,6 +284,8 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.EpisodeNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -356,8 +360,6 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.EpisodeUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -368,6 +370,8 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.EpisodeUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -402,8 +406,6 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.EpisodeListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -414,6 +416,8 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.EpisodeListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

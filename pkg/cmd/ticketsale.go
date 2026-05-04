@@ -79,12 +79,12 @@ var ticketSalesCreate = cli.Command{
 			Required: true,
 			BodyPath: "unit_price",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "buyer-email",
 			Usage:    "Email of the ticket buyer",
 			BodyPath: "buyer_email",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "coupon-code",
 			Usage:    "Coupon code applied, if any",
 			BodyPath: "coupon_code",
@@ -100,8 +100,9 @@ var ticketSalesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ticket-sale-id",
-			Required: true,
+			Name:      "ticket-sale-id",
+			Required:  true,
+			PathParam: "ticket_sale_id",
 		},
 	},
 	Action:          handleTicketSalesRetrieve,
@@ -114,55 +115,56 @@ var ticketSalesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ticket-sale-id",
-			Required: true,
+			Name:      "ticket-sale-id",
+			Required:  true,
+			PathParam: "ticket_sale_id",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "buyer-email",
 			BodyPath: "buyer_email",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "buyer-name",
 			BodyPath: "buyer_name",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "coupon-code",
 			BodyPath: "coupon_code",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "currency",
 			BodyPath: "currency",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "discount",
 			BodyPath: "discount",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "match-id",
 			BodyPath: "match_id",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "purchase-method",
 			Usage:    "How the ticket was purchased.",
 			BodyPath: "purchase_method",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "quantity",
 			BodyPath: "quantity",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "subtotal",
 			BodyPath: "subtotal",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "tax",
 			BodyPath: "tax",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "total",
 			BodyPath: "total",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "unit-price",
 			BodyPath: "unit_price",
 		},
@@ -176,12 +178,12 @@ var ticketSalesList = cli.Command{
 	Usage:   "Get a paginated list of all ticket sales with optional filtering. With 300\nrecords, this endpoint is ideal for practicing pagination.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "coupon-code",
 			Usage:     "Filter by coupon code (use 'none' for sales without coupons)",
 			QueryPath: "coupon_code",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "currency",
 			Usage:     "Filter by currency (GBP, USD, EUR)",
 			QueryPath: "currency",
@@ -192,12 +194,12 @@ var ticketSalesList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "match-id",
 			Usage:     "Filter by match ID",
 			QueryPath: "match_id",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "purchase-method",
 			Usage:     "How the ticket was purchased.",
 			QueryPath: "purchase_method",
@@ -223,8 +225,9 @@ var ticketSalesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "ticket-sale-id",
-			Required: true,
+			Name:      "ticket-sale-id",
+			Required:  true,
+			PathParam: "ticket_sale_id",
 		},
 	},
 	Action:          handleTicketSalesDelete,
@@ -239,8 +242,6 @@ func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TicketSaleNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -251,6 +252,8 @@ func handleTicketSalesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TicketSaleNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -325,8 +328,6 @@ func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TicketSaleUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -337,6 +338,8 @@ func handleTicketSalesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TicketSaleUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -371,8 +374,6 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TicketSaleListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -383,6 +384,8 @@ func handleTicketSalesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TicketSaleListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
