@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.10.0 (2026-05-04)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/cjavdev/believe-cli/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* support passing path and query params over stdin ([eebf3b9](https://github.com/cjavdev/believe-cli/commit/eebf3b9ead1e0adaaa66ae0e2017b91cdc6a7a6d))
+
+
+### Bug Fixes
+
+* **cli:** correctly load zsh autocompletion ([475c1e9](https://github.com/cjavdev/believe-cli/commit/475c1e98771e2f797c0c424277cce864f9a020e9))
+* flags for nullable body scalar fields are strictly typed ([7d33a49](https://github.com/cjavdev/believe-cli/commit/7d33a4937f6ca49ce4d842bc77c617399391df43))
+
+
+### Chores
+
+* **internal:** codegen related update ([c2a9c8d](https://github.com/cjavdev/believe-cli/commit/c2a9c8d4eb2011047cc9497810bbb35394f5b168))
+* **internal:** codegen related update ([c1c300d](https://github.com/cjavdev/believe-cli/commit/c1c300dd6d986c87cde11f44ae4f348ca649aaab))
+
 ## 0.9.0 (2026-04-27)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/cjavdev/believe-cli/compare/v0.8.0...v0.9.0)
