@@ -116,8 +116,9 @@ var episodesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 	},
 	Action:          handleEpisodesRetrieve,
@@ -130,8 +131,9 @@ var episodesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 		&requestflag.Flag[any]{
 			Name:     "air-date",
@@ -240,8 +242,9 @@ var episodesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 	},
 	Action:          handleEpisodesDelete,
@@ -254,8 +257,9 @@ var episodesGetWisdom = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "episode-id",
-			Required: true,
+			Name:      "episode-id",
+			Required:  true,
+			PathParam: "episode_id",
 		},
 	},
 	Action:          handleEpisodesGetWisdom,
@@ -270,8 +274,6 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.EpisodeNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -282,6 +284,8 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.EpisodeNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -356,8 +360,6 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.EpisodeUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -368,6 +370,8 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.EpisodeUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -402,8 +406,6 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.EpisodeListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -414,6 +416,8 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.EpisodeListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

@@ -36,8 +36,9 @@ var teamMembersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "member-id",
-			Required: true,
+			Name:      "member-id",
+			Required:  true,
+			PathParam: "member_id",
 		},
 	},
 	Action:          handleTeamMembersRetrieve,
@@ -50,8 +51,9 @@ var teamMembersUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "member-id",
-			Required: true,
+			Name:      "member-id",
+			Required:  true,
+			PathParam: "member_id",
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "updates",
@@ -106,8 +108,9 @@ var teamMembersDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "member-id",
-			Required: true,
+			Name:      "member-id",
+			Required:  true,
+			PathParam: "member_id",
 		},
 	},
 	Action:          handleTeamMembersDelete,
@@ -225,8 +228,6 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamMemberNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -237,6 +238,8 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamMemberNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -311,8 +314,6 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamMemberUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -323,6 +324,8 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamMemberUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -357,8 +360,6 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamMemberListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -369,6 +370,8 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamMemberListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -437,8 +440,6 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamMemberListCoachesParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -449,6 +450,8 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamMemberListCoachesParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -492,8 +495,6 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamMemberListPlayersParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -504,6 +505,8 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamMemberListPlayersParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -547,8 +550,6 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamMemberListStaffParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -559,6 +560,8 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamMemberListStaffParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

@@ -152,8 +152,9 @@ var teamsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "team-id",
-			Required: true,
+			Name:      "team-id",
+			Required:  true,
+			PathParam: "team_id",
 		},
 	},
 	Action:          handleTeamsRetrieve,
@@ -166,8 +167,9 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "team-id",
-			Required: true,
+			Name:      "team-id",
+			Required:  true,
+			PathParam: "team_id",
 		},
 		&requestflag.Flag[any]{
 			Name:     "annual-budget-gbp",
@@ -317,8 +319,9 @@ var teamsDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "team-id",
-			Required: true,
+			Name:      "team-id",
+			Required:  true,
+			PathParam: "team_id",
 		},
 	},
 	Action:          handleTeamsDelete,
@@ -331,8 +334,9 @@ var teamsGetCulture = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "team-id",
-			Required: true,
+			Name:      "team-id",
+			Required:  true,
+			PathParam: "team_id",
 		},
 	},
 	Action:          handleTeamsGetCulture,
@@ -345,8 +349,9 @@ var teamsGetRivals = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "team-id",
-			Required: true,
+			Name:      "team-id",
+			Required:  true,
+			PathParam: "team_id",
 		},
 	},
 	Action:          handleTeamsGetRivals,
@@ -359,8 +364,9 @@ var teamsListLogos = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:     "team-id",
-			Required: true,
+			Name:      "team-id",
+			Required:  true,
+			PathParam: "team_id",
 		},
 	},
 	Action:          handleTeamsListLogos,
@@ -375,8 +381,6 @@ func handleTeamsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamNewParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -387,6 +391,8 @@ func handleTeamsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -461,8 +467,6 @@ func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamUpdateParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -473,6 +477,8 @@ func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -507,8 +513,6 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
-	params := believe.TeamListParams{}
-
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -519,6 +523,8 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
+
+	params := believe.TeamListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
