@@ -60,12 +60,12 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Annual budget in GBP",
 			BodyPath: "annual_budget_gbp",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "average-attendance",
 			Usage:    "Average match attendance",
 			BodyPath: "average_attendance",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "contact-email",
 			Usage:    "Team contact email",
 			BodyPath: "contact_email",
@@ -76,12 +76,12 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Default:  true,
 			BodyPath: "is_active",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "nickname",
 			Usage:    "Team nickname",
 			BodyPath: "nickname",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "primary-color",
 			Usage:    "Primary team color (hex)",
 			BodyPath: "primary_color",
@@ -91,7 +91,7 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "List of rival team IDs",
 			BodyPath: "rival_teams",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "secondary-color",
 			Usage:    "Secondary team color (hex)",
 			BodyPath: "secondary_color",
@@ -101,12 +101,12 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Geographic coordinates for a location.",
 			BodyPath: "stadium_location",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "website",
 			Usage:    "Official team website",
 			BodyPath: "website",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "win-percentage",
 			Usage:    "Season win percentage",
 			BodyPath: "win_percentage",
@@ -152,9 +152,8 @@ var teamsRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsRetrieve,
@@ -167,48 +166,47 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 		&requestflag.Flag[any]{
 			Name:     "annual-budget-gbp",
 			BodyPath: "annual_budget_gbp",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "average-attendance",
 			BodyPath: "average_attendance",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "contact-email",
 			BodyPath: "contact_email",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:     "culture-score",
 			BodyPath: "culture_score",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:     "founded-year",
 			BodyPath: "founded_year",
 		},
-		&requestflag.Flag[*bool]{
+		&requestflag.Flag[any]{
 			Name:     "is-active",
 			BodyPath: "is_active",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[string]{
 			Name:     "league",
 			Usage:    "Football leagues.",
 			BodyPath: "league",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "name",
 			BodyPath: "name",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "nickname",
 			BodyPath: "nickname",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "primary-color",
 			BodyPath: "primary_color",
 		},
@@ -216,11 +214,11 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "rival-team",
 			BodyPath: "rival_teams",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "secondary-color",
 			BodyPath: "secondary_color",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "stadium",
 			BodyPath: "stadium",
 		},
@@ -234,11 +232,11 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Core values that define a team's culture.",
 			BodyPath: "values",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "website",
 			BodyPath: "website",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "win-percentage",
 			BodyPath: "win_percentage",
 		},
@@ -282,7 +280,7 @@ var teamsList = cli.Command{
 	Usage:   "Get a paginated list of all teams with optional filtering by league or culture\nscore.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[string]{
 			Name:      "league",
 			Usage:     "Football leagues.",
 			QueryPath: "league",
@@ -293,7 +291,7 @@ var teamsList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:      "min-culture-score",
 			Usage:     "Minimum culture score",
 			QueryPath: "min_culture_score",
@@ -319,9 +317,8 @@ var teamsDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsDelete,
@@ -334,9 +331,8 @@ var teamsGetCulture = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsGetCulture,
@@ -349,9 +345,8 @@ var teamsGetRivals = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsGetRivals,
@@ -364,9 +359,8 @@ var teamsListLogos = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsListLogos,
@@ -381,6 +375,8 @@ func handleTeamsCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamNewParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -391,8 +387,6 @@ func handleTeamsCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -467,6 +461,8 @@ func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamUpdateParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -477,8 +473,6 @@ func handleTeamsUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -513,6 +507,8 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamListParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -523,8 +519,6 @@ func handleTeamsList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

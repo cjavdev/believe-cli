@@ -25,7 +25,7 @@ var webhooksCreate = cli.Command{
 			Required: true,
 			BodyPath: "url",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "description",
 			Usage:    "Optional description for this webhook",
 			BodyPath: "description",
@@ -46,9 +46,8 @@ var webhooksRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "webhook-id",
-			Required:  true,
-			PathParam: "webhook_id",
+			Name:     "webhook-id",
+			Required: true,
 		},
 	},
 	Action:          handleWebhooksRetrieve,
@@ -70,9 +69,8 @@ var webhooksDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "webhook-id",
-			Required:  true,
-			PathParam: "webhook_id",
+			Name:     "webhook-id",
+			Required: true,
 		},
 	},
 	Action:          handleWebhooksDelete,
@@ -90,7 +88,7 @@ var webhooksTriggerEvent = cli.Command{
 			Required: true,
 			BodyPath: "event_type",
 		},
-		&requestflag.Flag[map[string]any]{
+		&requestflag.Flag[any]{
 			Name:     "payload",
 			Usage:    "Optional event payload. If not provided, a sample payload will be generated.",
 			BodyPath: "payload",
@@ -108,6 +106,8 @@ func handleWebhooksCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.WebhookNewParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -118,8 +118,6 @@ func handleWebhooksCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.WebhookNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -272,6 +270,8 @@ func handleWebhooksTriggerEvent(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.WebhookTriggerEventParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -282,8 +282,6 @@ func handleWebhooksTriggerEvent(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.WebhookTriggerEventParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
