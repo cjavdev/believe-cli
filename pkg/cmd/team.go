@@ -60,12 +60,12 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Annual budget in GBP",
 			BodyPath: "annual_budget_gbp",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "average-attendance",
 			Usage:    "Average match attendance",
 			BodyPath: "average_attendance",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "contact-email",
 			Usage:    "Team contact email",
 			BodyPath: "contact_email",
@@ -76,12 +76,12 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Default:  true,
 			BodyPath: "is_active",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "nickname",
 			Usage:    "Team nickname",
 			BodyPath: "nickname",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "primary-color",
 			Usage:    "Primary team color (hex)",
 			BodyPath: "primary_color",
@@ -91,7 +91,7 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "List of rival team IDs",
 			BodyPath: "rival_teams",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "secondary-color",
 			Usage:    "Secondary team color (hex)",
 			BodyPath: "secondary_color",
@@ -101,12 +101,12 @@ var teamsCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Geographic coordinates for a location.",
 			BodyPath: "stadium_location",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "website",
 			Usage:    "Official team website",
 			BodyPath: "website",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "win-percentage",
 			Usage:    "Season win percentage",
 			BodyPath: "win_percentage",
@@ -173,40 +173,40 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "annual-budget-gbp",
 			BodyPath: "annual_budget_gbp",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "average-attendance",
 			BodyPath: "average_attendance",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "contact-email",
 			BodyPath: "contact_email",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "culture-score",
 			BodyPath: "culture_score",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "founded-year",
 			BodyPath: "founded_year",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*bool]{
 			Name:     "is-active",
 			BodyPath: "is_active",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "league",
 			Usage:    "Football leagues.",
 			BodyPath: "league",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "name",
 			BodyPath: "name",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "nickname",
 			BodyPath: "nickname",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "primary-color",
 			BodyPath: "primary_color",
 		},
@@ -214,11 +214,11 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "rival-team",
 			BodyPath: "rival_teams",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "secondary-color",
 			BodyPath: "secondary_color",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "stadium",
 			BodyPath: "stadium",
 		},
@@ -232,11 +232,11 @@ var teamsUpdate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Core values that define a team's culture.",
 			BodyPath: "values",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "website",
 			BodyPath: "website",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*float64]{
 			Name:     "win-percentage",
 			BodyPath: "win_percentage",
 		},
@@ -280,7 +280,7 @@ var teamsList = cli.Command{
 	Usage:   "Get a paginated list of all teams with optional filtering by league or culture\nscore.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "league",
 			Usage:     "Football leagues.",
 			QueryPath: "league",
@@ -291,7 +291,7 @@ var teamsList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:      "min-culture-score",
 			Usage:     "Minimum culture score",
 			QueryPath: "min_culture_score",

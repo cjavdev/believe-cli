@@ -25,7 +25,7 @@ var webhooksCreate = cli.Command{
 			Required: true,
 			BodyPath: "url",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "description",
 			Usage:    "Optional description for this webhook",
 			BodyPath: "description",
@@ -88,7 +88,7 @@ var webhooksTriggerEvent = cli.Command{
 			Required: true,
 			BodyPath: "event_type",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[map[string]any]{
 			Name:     "payload",
 			Usage:    "Optional event payload. If not provided, a sample payload will be generated.",
 			BodyPath: "payload",

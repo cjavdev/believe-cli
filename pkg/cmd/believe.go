@@ -31,7 +31,7 @@ var believeSubmit = cli.Command{
 			Required: true,
 			BodyPath: "situation_type",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "context",
 			Usage:    "Additional context",
 			BodyPath: "context",

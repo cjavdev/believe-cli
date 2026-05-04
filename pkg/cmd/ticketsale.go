@@ -79,12 +79,12 @@ var ticketSalesCreate = cli.Command{
 			Required: true,
 			BodyPath: "unit_price",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "buyer-email",
 			Usage:    "Email of the ticket buyer",
 			BodyPath: "buyer_email",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "coupon-code",
 			Usage:    "Coupon code applied, if any",
 			BodyPath: "coupon_code",
@@ -117,52 +117,52 @@ var ticketSalesUpdate = cli.Command{
 			Name:     "ticket-sale-id",
 			Required: true,
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "buyer-email",
 			BodyPath: "buyer_email",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "buyer-name",
 			BodyPath: "buyer_name",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "coupon-code",
 			BodyPath: "coupon_code",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "currency",
 			BodyPath: "currency",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "discount",
 			BodyPath: "discount",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "match-id",
 			BodyPath: "match_id",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:     "purchase-method",
 			Usage:    "How the ticket was purchased.",
 			BodyPath: "purchase_method",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*int64]{
 			Name:     "quantity",
 			BodyPath: "quantity",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "subtotal",
 			BodyPath: "subtotal",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "tax",
 			BodyPath: "tax",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "total",
 			BodyPath: "total",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:     "unit-price",
 			BodyPath: "unit_price",
 		},
@@ -176,12 +176,12 @@ var ticketSalesList = cli.Command{
 	Usage:   "Get a paginated list of all ticket sales with optional filtering. With 300\nrecords, this endpoint is ideal for practicing pagination.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "coupon-code",
 			Usage:     "Filter by coupon code (use 'none' for sales without coupons)",
 			QueryPath: "coupon_code",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "currency",
 			Usage:     "Filter by currency (GBP, USD, EUR)",
 			QueryPath: "currency",
@@ -192,12 +192,12 @@ var ticketSalesList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[any]{
+		&requestflag.Flag[*string]{
 			Name:      "match-id",
 			Usage:     "Filter by match ID",
 			QueryPath: "match_id",
 		},
-		&requestflag.Flag[string]{
+		&requestflag.Flag[*string]{
 			Name:      "purchase-method",
 			Usage:     "How the ticket was purchased.",
 			QueryPath: "purchase_method",
