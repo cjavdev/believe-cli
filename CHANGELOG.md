@@ -1,7 +1,13 @@
 # Changelog
 
-<<<<<<< HEAD
-=======
+## [0.10.1](https://github.com/cjavdev/believe-cli/compare/v0.10.0...v0.10.1) (2026-05-05)
+
+
+### Chores
+
+* regenerate from believe[#56](https://github.com/cjavdev/believe-cli/issues/56) ([6e0e09c](https://github.com/cjavdev/believe-cli/commit/6e0e09c6ed309b98339eb93ac5eac7862ef2df2d))
+* regenerate SDKs from believe[#56](https://github.com/cjavdev/believe-cli/issues/56) (still publish even half done) ([e7556bc](https://github.com/cjavdev/believe-cli/commit/e7556bc15b82a7a04eba889f8a19d69f858e67ff))
+
 ## 0.10.0 (2026-05-04)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/cjavdev/believe-cli/compare/v0.9.0...v0.10.0)
@@ -47,7 +53,6 @@ Full Changelog: [v0.7.0...v0.7.1](https://github.com/cjavdev/believe-cli/compare
 * **internal:** codegen related update ([e0bccb4](https://github.com/cjavdev/believe-cli/commit/e0bccb47a918dae0bd951dc13dc963acd555bfd2))
 * **internal:** more robust bootstrap script ([28c5d5c](https://github.com/cjavdev/believe-cli/commit/28c5d5cef968490fe3a05b41e6caea2c8f892508))
 
->>>>>>> 28c46ce (Apply custom code)
 ## 0.7.0 (2026-04-22)
 
 Full Changelog: [v0.6.1...v0.7.0](https://github.com/cjavdev/believe-cli/compare/v0.6.1...v0.7.0)
