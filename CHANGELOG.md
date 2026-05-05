@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.1](https://github.com/cjavdev/believe-cli/compare/v0.10.0...v0.10.1) (2026-05-05)
+
+
+### Chores
+
+* regenerate from believe[#56](https://github.com/cjavdev/believe-cli/issues/56) ([6e0e09c](https://github.com/cjavdev/believe-cli/commit/6e0e09c6ed309b98339eb93ac5eac7862ef2df2d))
+* regenerate SDKs from believe[#56](https://github.com/cjavdev/believe-cli/issues/56) (still publish even half done) ([e7556bc](https://github.com/cjavdev/believe-cli/commit/e7556bc15b82a7a04eba889f8a19d69f858e67ff))
+
 ## 0.10.0 (2026-05-04)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/cjavdev/believe-cli/compare/v0.9.0...v0.10.0)
