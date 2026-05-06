@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.2](https://github.com/cjavdev/believe-cli/compare/v0.10.1...v0.10.2) (2026-05-06)
+
+
+### Bug Fixes
+
+* merge conflicts ([c002050](https://github.com/cjavdev/believe-cli/commit/c002050fdf85c4af932cdd5b364e1c38df99d624))
+
 ## [0.10.1](https://github.com/cjavdev/believe-cli/compare/v0.10.0...v0.10.1) (2026-05-05)
 
 
