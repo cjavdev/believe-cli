@@ -20,9 +20,8 @@ var coachingPrinciplesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "principle-id",
-			Required:  true,
-			PathParam: "principle_id",
+			Name:     "principle-id",
+			Required: true,
 		},
 	},
 	Action:          handleCoachingPrinciplesRetrieve,
@@ -114,6 +113,8 @@ func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.CoachingPrincipleListParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -124,8 +125,6 @@ func handleCoachingPrinciplesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.CoachingPrincipleListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

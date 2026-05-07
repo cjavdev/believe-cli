@@ -16,13 +16,12 @@ import (
 
 var matchesCommentaryStream = cli.Command{
 	Name:    "stream",
-	Usage:   "Stream live match commentary for a specific match. Uses Server-Sent Events (SSE)\nto stream commentary events in real-time.",
+	Usage:   "Stream live match commentary for a specific match. Uses Server-Sent Events (SSE) to stream commentary events in real-time.",
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "match-id",
-			Required:  true,
-			PathParam: "match_id",
+			Name:     "match-id",
+			Required: true,
 		},
 	},
 	Action:          handleMatchesCommentaryStream,

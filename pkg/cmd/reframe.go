@@ -44,6 +44,8 @@ func handleReframeTransformNegativeThoughts(ctx context.Context, cmd *cli.Comman
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.ReframeTransformNegativeThoughtsParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -54,8 +56,6 @@ func handleReframeTransformNegativeThoughts(ctx context.Context, cmd *cli.Comman
 	if err != nil {
 		return err
 	}
-
-	params := believe.ReframeTransformNegativeThoughtsParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))

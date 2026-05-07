@@ -1,5 +1,58 @@
 # Changelog
 
+## [0.10.1](https://github.com/cjavdev/believe-cli/compare/v0.10.0...v0.10.1) (2026-05-05)
+
+
+### Chores
+
+* regenerate from believe[#56](https://github.com/cjavdev/believe-cli/issues/56) ([6e0e09c](https://github.com/cjavdev/believe-cli/commit/6e0e09c6ed309b98339eb93ac5eac7862ef2df2d))
+* regenerate SDKs from believe[#56](https://github.com/cjavdev/believe-cli/issues/56) (still publish even half done) ([e7556bc](https://github.com/cjavdev/believe-cli/commit/e7556bc15b82a7a04eba889f8a19d69f858e67ff))
+
+## 0.10.0 (2026-05-04)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/cjavdev/believe-cli/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* support passing path and query params over stdin ([eebf3b9](https://github.com/cjavdev/believe-cli/commit/eebf3b9ead1e0adaaa66ae0e2017b91cdc6a7a6d))
+
+
+### Bug Fixes
+
+* **cli:** correctly load zsh autocompletion ([475c1e9](https://github.com/cjavdev/believe-cli/commit/475c1e98771e2f797c0c424277cce864f9a020e9))
+* flags for nullable body scalar fields are strictly typed ([7d33a49](https://github.com/cjavdev/believe-cli/commit/7d33a4937f6ca49ce4d842bc77c617399391df43))
+
+
+### Chores
+
+* **internal:** codegen related update ([c2a9c8d](https://github.com/cjavdev/believe-cli/commit/c2a9c8d4eb2011047cc9497810bbb35394f5b168))
+* **internal:** codegen related update ([c1c300d](https://github.com/cjavdev/believe-cli/commit/c1c300dd6d986c87cde11f44ae4f348ca649aaab))
+
+## 0.9.0 (2026-04-27)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/cjavdev/believe-cli/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** manual updates ([d48ea9d](https://github.com/cjavdev/believe-cli/commit/d48ea9d6db93da28f0da58956106529cb09a130c))
+
+## 0.8.0 (2026-04-23)
+
+Full Changelog: [v0.7.1...v0.8.0](https://github.com/cjavdev/believe-cli/compare/v0.7.1...v0.8.0)
+
+### Features
+
+* **api:** manual updates ([28daa51](https://github.com/cjavdev/believe-cli/commit/28daa51b1be7d7af5767f9787d5a85db94e51fd6))
+
+## 0.7.1 (2026-04-23)
+
+Full Changelog: [v0.7.0...v0.7.1](https://github.com/cjavdev/believe-cli/compare/v0.7.0...v0.7.1)
+
+### Chores
+
+* **internal:** codegen related update ([e0bccb4](https://github.com/cjavdev/believe-cli/commit/e0bccb47a918dae0bd951dc13dc963acd555bfd2))
+* **internal:** more robust bootstrap script ([28c5d5c](https://github.com/cjavdev/believe-cli/commit/28c5d5cef968490fe3a05b41e6caea2c8f892508))
+
 ## 0.7.0 (2026-04-22)
 
 Full Changelog: [v0.6.1...v0.7.0](https://github.com/cjavdev/believe-cli/compare/v0.6.1...v0.7.0)

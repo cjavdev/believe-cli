@@ -20,14 +20,12 @@ var teamsLogoDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 		&requestflag.Flag[string]{
-			Name:      "file-id",
-			Required:  true,
-			PathParam: "file_id",
+			Name:     "file-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsLogoDelete,
@@ -40,14 +38,12 @@ var teamsLogoDownload = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 		&requestflag.Flag[string]{
-			Name:      "file-id",
-			Required:  true,
-			PathParam: "file_id",
+			Name:     "file-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamsLogoDownload,
@@ -60,9 +56,8 @@ var teamsLogoUpload = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "team-id",
-			Required:  true,
-			PathParam: "team_id",
+			Name:     "team-id",
+			Required: true,
 		},
 		&requestflag.Flag[string]{
 			Name:      "file",
@@ -87,6 +82,10 @@ func handleTeamsLogoDelete(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamLogoDeleteParams{
+		TeamID: cmd.Value("team-id").(string),
+	}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -96,10 +95,6 @@ func handleTeamsLogoDelete(ctx context.Context, cmd *cli.Command) error {
 	)
 	if err != nil {
 		return err
-	}
-
-	params := believe.TeamLogoDeleteParams{
-		TeamID: cmd.Value("team-id").(string),
 	}
 
 	return client.Teams.Logo.Delete(
@@ -121,6 +116,10 @@ func handleTeamsLogoDownload(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamLogoDownloadParams{
+		TeamID: cmd.Value("team-id").(string),
+	}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -130,10 +129,6 @@ func handleTeamsLogoDownload(ctx context.Context, cmd *cli.Command) error {
 	)
 	if err != nil {
 		return err
-	}
-
-	params := believe.TeamLogoDownloadParams{
-		TeamID: cmd.Value("team-id").(string),
 	}
 
 	var res []byte
@@ -172,6 +167,8 @@ func handleTeamsLogoUpload(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamLogoUploadParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -182,8 +179,6 @@ func handleTeamsLogoUpload(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamLogoUploadParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
