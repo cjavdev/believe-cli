@@ -85,7 +85,7 @@ var episodesCreate = cli.Command{
 			Required: true,
 			BodyPath: "writer",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "biscuits-with-boss-moment",
 			Usage:    "Notable biscuits with the boss scene",
 			BodyPath: "biscuits_with_boss_moment",
@@ -95,12 +95,12 @@ var episodesCreate = cli.Command{
 			Usage:    "Standout moments from the episode",
 			BodyPath: "memorable_moments",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "us-viewers-millions",
 			Usage:    "US viewership in millions",
 			BodyPath: "us_viewers_millions",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "viewer-rating",
 			Usage:    "Viewer rating out of 10",
 			BodyPath: "viewer_rating",
@@ -116,9 +116,8 @@ var episodesRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "episode-id",
-			Required:  true,
-			PathParam: "episode_id",
+			Name:     "episode-id",
+			Required: true,
 		},
 	},
 	Action:          handleEpisodesRetrieve,
@@ -131,15 +130,14 @@ var episodesUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "episode-id",
-			Required:  true,
-			PathParam: "episode_id",
+			Name:     "episode-id",
+			Required: true,
 		},
 		&requestflag.Flag[any]{
 			Name:     "air-date",
 			BodyPath: "air_date",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "biscuits-with-boss-moment",
 			BodyPath: "biscuits_with_boss_moment",
 		},
@@ -147,15 +145,15 @@ var episodesUpdate = cli.Command{
 			Name:     "character-focus",
 			BodyPath: "character_focus",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "director",
 			BodyPath: "director",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:     "episode-number",
 			BodyPath: "episode_number",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "main-theme",
 			BodyPath: "main_theme",
 		},
@@ -163,35 +161,35 @@ var episodesUpdate = cli.Command{
 			Name:     "memorable-moment",
 			BodyPath: "memorable_moments",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:     "runtime-minutes",
 			BodyPath: "runtime_minutes",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:     "season",
 			BodyPath: "season",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "synopsis",
 			BodyPath: "synopsis",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "ted-wisdom",
 			BodyPath: "ted_wisdom",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "title",
 			BodyPath: "title",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "us-viewers-millions",
 			BodyPath: "us_viewers_millions",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "viewer-rating",
 			BodyPath: "viewer_rating",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "writer",
 			BodyPath: "writer",
 		},
@@ -202,10 +200,10 @@ var episodesUpdate = cli.Command{
 
 var episodesList = cli.Command{
 	Name:    "list",
-	Usage:   "Get a paginated list of all Ted Lasso episodes with optional filtering by\nseason.",
+	Usage:   "Get a paginated list of all Ted Lasso episodes with optional filtering by season.",
 	Suggest: true,
 	Flags: []cli.Flag{
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "character-focus",
 			Usage:     "Filter by character focus (character ID)",
 			QueryPath: "character_focus",
@@ -216,7 +214,7 @@ var episodesList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:      "season",
 			Usage:     "Filter by season",
 			QueryPath: "season",
@@ -242,9 +240,8 @@ var episodesDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "episode-id",
-			Required:  true,
-			PathParam: "episode_id",
+			Name:     "episode-id",
+			Required: true,
 		},
 	},
 	Action:          handleEpisodesDelete,
@@ -257,9 +254,8 @@ var episodesGetWisdom = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "episode-id",
-			Required:  true,
-			PathParam: "episode_id",
+			Name:     "episode-id",
+			Required: true,
 		},
 	},
 	Action:          handleEpisodesGetWisdom,
@@ -274,6 +270,8 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.EpisodeNewParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -284,8 +282,6 @@ func handleEpisodesCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.EpisodeNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -360,6 +356,8 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.EpisodeUpdateParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -370,8 +368,6 @@ func handleEpisodesUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.EpisodeUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -406,6 +402,8 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.EpisodeListParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -416,8 +414,6 @@ func handleEpisodesList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.EpisodeListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

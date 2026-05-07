@@ -36,9 +36,8 @@ var teamMembersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "member-id",
-			Required:  true,
-			PathParam: "member_id",
+			Name:     "member-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamMembersRetrieve,
@@ -51,9 +50,8 @@ var teamMembersUpdate = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "member-id",
-			Required:  true,
-			PathParam: "member_id",
+			Name:     "member-id",
+			Required: true,
 		},
 		&requestflag.Flag[map[string]any]{
 			Name:     "updates",
@@ -77,7 +75,7 @@ var teamMembersList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "member-type",
 			Usage:     "Filter by member type",
 			QueryPath: "member_type",
@@ -88,7 +86,7 @@ var teamMembersList = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -108,9 +106,8 @@ var teamMembersDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "member-id",
-			Required:  true,
-			PathParam: "member_id",
+			Name:     "member-id",
+			Required: true,
 		},
 	},
 	Action:          handleTeamMembersDelete,
@@ -134,12 +131,12 @@ var teamMembersListCoaches = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[string]{
 			Name:      "specialty",
 			Usage:     "Coaching specialties.",
 			QueryPath: "specialty",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -164,7 +161,7 @@ var teamMembersListPlayers = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[string]{
 			Name:      "position",
 			Usage:     "Football positions for players.",
 			QueryPath: "position",
@@ -175,7 +172,7 @@ var teamMembersListPlayers = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -206,7 +203,7 @@ var teamMembersListStaff = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -228,6 +225,8 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamMemberNewParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -238,8 +237,6 @@ func handleTeamMembersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamMemberNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -314,6 +311,8 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamMemberUpdateParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -324,8 +323,6 @@ func handleTeamMembersUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamMemberUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -360,6 +357,8 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamMemberListParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -370,8 +369,6 @@ func handleTeamMembersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamMemberListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -440,6 +437,8 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamMemberListCoachesParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -450,8 +449,6 @@ func handleTeamMembersListCoaches(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamMemberListCoachesParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -495,6 +492,8 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamMemberListPlayersParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -505,8 +504,6 @@ func handleTeamMembersListPlayers(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamMemberListPlayersParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
@@ -550,6 +547,8 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.TeamMemberListStaffParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -560,8 +559,6 @@ func handleTeamMembersListStaff(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.TeamMemberListStaffParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")

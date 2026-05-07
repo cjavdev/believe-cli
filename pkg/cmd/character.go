@@ -54,7 +54,7 @@ var charactersCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Character's date of birth",
 			BodyPath: "date_of_birth",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "email",
 			Usage:    "Character's email address",
 			BodyPath: "email",
@@ -64,12 +64,12 @@ var charactersCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Character development across seasons",
 			BodyPath: "growth_arcs",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "height-meters",
 			Usage:    "Height in meters",
 			BodyPath: "height_meters",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "profile-image-url",
 			Usage:    "URL to character's profile image",
 			BodyPath: "profile_image_url",
@@ -84,7 +84,7 @@ var charactersCreate = requestflag.WithInnerFlags(cli.Command{
 			Usage:    "Memorable quotes from this character",
 			BodyPath: "signature_quotes",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "team-id",
 			Usage:    "ID of the team they belong to",
 			BodyPath: "team_id",
@@ -155,9 +155,8 @@ var charactersRetrieve = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "character-id",
-			Required:  true,
-			PathParam: "character_id",
+			Name:     "character-id",
+			Required: true,
 		},
 	},
 	Action:          handleCharactersRetrieve,
@@ -170,11 +169,10 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "character-id",
-			Required:  true,
-			PathParam: "character_id",
+			Name:     "character-id",
+			Required: true,
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "background",
 			BodyPath: "background",
 		},
@@ -182,7 +180,7 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "date-of-birth",
 			BodyPath: "date_of_birth",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "email",
 			BodyPath: "email",
 		},
@@ -195,11 +193,11 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "growth-arc",
 			BodyPath: "growth_arcs",
 		},
-		&requestflag.Flag[*float64]{
+		&requestflag.Flag[any]{
 			Name:     "height-meters",
 			BodyPath: "height_meters",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "name",
 			BodyPath: "name",
 		},
@@ -207,11 +205,11 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "personality-trait",
 			BodyPath: "personality_traits",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "profile-image-url",
 			BodyPath: "profile_image_url",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[string]{
 			Name:     "role",
 			Usage:    "Roles characters can have.",
 			BodyPath: "role",
@@ -224,7 +222,7 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 			Name:     "signature-quote",
 			BodyPath: "signature_quotes",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:     "team-id",
 			BodyPath: "team_id",
 		},
@@ -261,34 +259,29 @@ var charactersUpdate = requestflag.WithInnerFlags(cli.Command{
 	},
 	"growth-arc": {
 		&requestflag.InnerFlag[string]{
-			Name:                  "growth-arc.breakthrough",
-			Usage:                 "Key breakthrough moment",
-			InnerField:            "breakthrough",
-			OuterIsArrayOfObjects: true,
+			Name:       "growth-arc.breakthrough",
+			Usage:      "Key breakthrough moment",
+			InnerField: "breakthrough",
 		},
 		&requestflag.InnerFlag[string]{
-			Name:                  "growth-arc.challenge",
-			Usage:                 "Main challenge faced",
-			InnerField:            "challenge",
-			OuterIsArrayOfObjects: true,
+			Name:       "growth-arc.challenge",
+			Usage:      "Main challenge faced",
+			InnerField: "challenge",
 		},
 		&requestflag.InnerFlag[string]{
-			Name:                  "growth-arc.ending-point",
-			Usage:                 "Where the character ends up",
-			InnerField:            "ending_point",
-			OuterIsArrayOfObjects: true,
+			Name:       "growth-arc.ending-point",
+			Usage:      "Where the character ends up",
+			InnerField: "ending_point",
 		},
 		&requestflag.InnerFlag[int64]{
-			Name:                  "growth-arc.season",
-			Usage:                 "Season number",
-			InnerField:            "season",
-			OuterIsArrayOfObjects: true,
+			Name:       "growth-arc.season",
+			Usage:      "Season number",
+			InnerField: "season",
 		},
 		&requestflag.InnerFlag[string]{
-			Name:                  "growth-arc.starting-point",
-			Usage:                 "Where the character starts emotionally",
-			InnerField:            "starting_point",
-			OuterIsArrayOfObjects: true,
+			Name:       "growth-arc.starting-point",
+			Usage:      "Where the character starts emotionally",
+			InnerField: "starting_point",
 		},
 	},
 })
@@ -304,12 +297,12 @@ var charactersList = cli.Command{
 			Default:   20,
 			QueryPath: "limit",
 		},
-		&requestflag.Flag[*int64]{
+		&requestflag.Flag[any]{
 			Name:      "min-optimism",
 			Usage:     "Minimum optimism score",
 			QueryPath: "min_optimism",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[string]{
 			Name:      "role",
 			Usage:     "Roles characters can have.",
 			QueryPath: "role",
@@ -320,7 +313,7 @@ var charactersList = cli.Command{
 			Default:   0,
 			QueryPath: "skip",
 		},
-		&requestflag.Flag[*string]{
+		&requestflag.Flag[any]{
 			Name:      "team-id",
 			Usage:     "Filter by team ID",
 			QueryPath: "team_id",
@@ -340,9 +333,8 @@ var charactersDelete = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "character-id",
-			Required:  true,
-			PathParam: "character_id",
+			Name:     "character-id",
+			Required: true,
 		},
 	},
 	Action:          handleCharactersDelete,
@@ -355,9 +347,8 @@ var charactersGetQuotes = cli.Command{
 	Suggest: true,
 	Flags: []cli.Flag{
 		&requestflag.Flag[string]{
-			Name:      "character-id",
-			Required:  true,
-			PathParam: "character_id",
+			Name:     "character-id",
+			Required: true,
 		},
 	},
 	Action:          handleCharactersGetQuotes,
@@ -372,6 +363,8 @@ func handleCharactersCreate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.CharacterNewParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -382,8 +375,6 @@ func handleCharactersCreate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.CharacterNewParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -458,6 +449,8 @@ func handleCharactersUpdate(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.CharacterUpdateParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -468,8 +461,6 @@ func handleCharactersUpdate(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.CharacterUpdateParams{}
 
 	var res []byte
 	options = append(options, option.WithResponseBodyInto(&res))
@@ -504,6 +495,8 @@ func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
 		return fmt.Errorf("Unexpected extra arguments: %v", unusedArgs)
 	}
 
+	params := believe.CharacterListParams{}
+
 	options, err := flagOptions(
 		cmd,
 		apiquery.NestedQueryFormatBrackets,
@@ -514,8 +507,6 @@ func handleCharactersList(ctx context.Context, cmd *cli.Command) error {
 	if err != nil {
 		return err
 	}
-
-	params := believe.CharacterListParams{}
 
 	format := cmd.Root().String("format")
 	explicitFormat := cmd.Root().IsSet("format")
