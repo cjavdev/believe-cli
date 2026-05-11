@@ -71,6 +71,11 @@ var quotesCreate = cli.Command{
 			Usage:    "Popularity/virality score (0-100)",
 			BodyPath: "popularity_score",
 		},
+		&requestflag.Flag[*int64]{
+			Name:     "season",
+			Usage:    "Season number (1-3) when the quote occurred",
+			BodyPath: "season",
+		},
 		&requestflag.Flag[[]string]{
 			Name:     "secondary-theme",
 			Usage:    "Additional themes",
@@ -139,6 +144,10 @@ var quotesUpdate = cli.Command{
 		&requestflag.Flag[*float64]{
 			Name:     "popularity-score",
 			BodyPath: "popularity_score",
+		},
+		&requestflag.Flag[*int64]{
+			Name:     "season",
+			BodyPath: "season",
 		},
 		&requestflag.Flag[any]{
 			Name:     "secondary-theme",
