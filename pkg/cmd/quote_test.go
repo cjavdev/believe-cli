@@ -24,6 +24,7 @@ func TestQuotesCreate(t *testing.T) {
 			"--is-funny=false",
 			"--is-inspirational=true",
 			"--popularity-score", "98.5",
+			"--season", "1",
 			"--secondary-theme", "leadership",
 			"--secondary-theme", "teamwork",
 			"--times-shared", "250000",
@@ -42,6 +43,7 @@ func TestQuotesCreate(t *testing.T) {
 			"is_funny: false\n" +
 			"is_inspirational: true\n" +
 			"popularity_score: 98.5\n" +
+			"season: 1\n" +
 			"secondary_themes:\n" +
 			"  - leadership\n" +
 			"  - teamwork\n" +
@@ -81,6 +83,7 @@ func TestQuotesUpdate(t *testing.T) {
 			"--is-inspirational=true",
 			"--moment-type", "halftime_speech",
 			"--popularity-score", "0",
+			"--season", "1",
 			"--secondary-theme", "[belief]",
 			"--text", "x",
 			"--theme", "belief",
@@ -98,6 +101,7 @@ func TestQuotesUpdate(t *testing.T) {
 			"is_inspirational: true\n" +
 			"moment_type: halftime_speech\n" +
 			"popularity_score: 0\n" +
+			"season: 1\n" +
 			"secondary_themes:\n" +
 			"  - belief\n" +
 			"text: x\n" +
