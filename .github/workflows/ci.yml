@@ -25,11 +25,18 @@ jobs:
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      # If your Go SDK repo is private, uncomment the step below and add a
+      # fine-grained GitHub PAT with `Contents: Read` on the Go SDK repo
+      # as a secret named `GO_REPO_READ_TOKEN` in this repo. Apply this
+      # edit as custom code so stlc preserves it across regenerations.
+      # - name: Authenticate git for the private Go SDK repo
+      #   shell: bash
+      #   env:
+      #     GO_MODULE_REPO: cjavdev/believe-go
+      #   run: git config --global url."https://x-access-token:${{ secrets.GO_REPO_READ_TOKEN }}@github.com/${GO_MODULE_REPO}".insteadOf "https://github.com/${GO_MODULE_REPO}"
       - uses: ./.github/actions/setup-go
-        with:
-          stainless-api-key: ${{ secrets.STAINLESS_API_KEY }}
 
       - name: Link staging branch
         if: github.repository == 'cjavdev/believe-cli'
@@ -51,11 +58,18 @@ jobs:
     runs-on: ubuntu-latest
     if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      # If your Go SDK repo is private, uncomment the step below and add a
+      # fine-grained GitHub PAT with `Contents: Read` on the Go SDK repo
+      # as a secret named `GO_REPO_READ_TOKEN` in this repo. Apply this
+      # edit as custom code so stlc preserves it across regenerations.
+      # - name: Authenticate git for the private Go SDK repo
+      #   shell: bash
+      #   env:
+      #     GO_MODULE_REPO: cjavdev/believe-go
+      #   run: git config --global url."https://x-access-token:${{ secrets.GO_REPO_READ_TOKEN }}@github.com/${GO_MODULE_REPO}".insteadOf "https://github.com/${GO_MODULE_REPO}"
       - uses: ./.github/actions/setup-go
-        with:
-          stainless-api-key: ${{ secrets.STAINLESS_API_KEY }}
 
       - name: Link staging branch
         if: github.repository == 'cjavdev/believe-cli'
@@ -66,7 +80,7 @@ jobs:
         run: ./scripts/bootstrap
 
       - name: Run goreleaser
-        uses: goreleaser/goreleaser-action@v6.1.0
+        uses: goreleaser/goreleaser-action@9ed2f89a662bf1735a48bc8557fd212fa902bebf # v6.1.0
         with:
           version: latest
           args: release --snapshot --clean --skip=publish
@@ -83,11 +97,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      # If your Go SDK repo is private, uncomment the step below and add a
+      # fine-grained GitHub PAT with `Contents: Read` on the Go SDK repo
+      # as a secret named `GO_REPO_READ_TOKEN` in this repo. Apply this
+      # edit as custom code so stlc preserves it across regenerations.
+      # - name: Authenticate git for the private Go SDK repo
+      #   shell: bash
+      #   env:
+      #     GO_MODULE_REPO: cjavdev/believe-go
+      #   run: git config --global url."https://x-access-token:${{ secrets.GO_REPO_READ_TOKEN }}@github.com/${GO_MODULE_REPO}".insteadOf "https://github.com/${GO_MODULE_REPO}"
       - uses: ./.github/actions/setup-go
-        with:
-          stainless-api-key: ${{ secrets.STAINLESS_API_KEY }}
 
       - name: Link staging branch
         if: github.repository == 'cjavdev/believe-cli'
