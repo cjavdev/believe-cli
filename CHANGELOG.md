@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.10.2](https://github.com/cjavdev/believe-cli/compare/v0.10.1...v0.10.2) (2026-05-14)
+
+
+### Bug Fixes
+
+* merge conflicts ([c002050](https://github.com/cjavdev/believe-cli/commit/c002050fdf85c4af932cdd5b364e1c38df99d624))
+
+
+### Chores
+
+* regenerate from believe[#86](https://github.com/cjavdev/believe-cli/issues/86) (try this) ([c582f1c](https://github.com/cjavdev/believe-cli/commit/c582f1ca87d844fa665e29696ce041b4098210f9))
+* regenerate SDKs from believe[#86](https://github.com/cjavdev/believe-cli/issues/86) (try this) ([bc1f08a](https://github.com/cjavdev/believe-cli/commit/bc1f08a49f08e04c6088b52dd47d16c1b0f133a4))
+
 ## 0.7.1 (2026-04-23)
 
 Full Changelog: [v0.7.0...v0.7.1](https://github.com/cjavdev/believe-cli/compare/v0.7.0...v0.7.1)
